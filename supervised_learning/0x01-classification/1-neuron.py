@@ -3,7 +3,7 @@ import numpy as np
 
 
 class Neuron:
-    def __init__(self,nx):
+    def __init__(self, nx):
           self.nx=nx
           if type(self.nx) != int:
              raise Exception("nx must be an integer")
