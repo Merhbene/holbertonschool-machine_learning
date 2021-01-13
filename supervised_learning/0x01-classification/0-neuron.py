@@ -3,8 +3,8 @@
 import numpy as np
 
 
-""" neuron class"""
 class Neuron():
+    """ neuron class"""
     def __init__(self, nx):
         self.nx = nx
         if type(self.nx) != int:
