@@ -10,7 +10,7 @@ class Neuron():
             raise TypeError("nx must be an integer")
         if self.nx < 1:
             raise ValueError("nx must be a positive integer")
-        self.W = np.expand_dims(np.random.randn(self.nx), axis=0) 
+        self.W = np.expand_dims(np.random.randn(self.nx), axis=0)
         self.b = 0
-        self.A = 0
+        self.A = 0 
  
