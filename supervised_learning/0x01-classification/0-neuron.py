@@ -6,6 +6,7 @@ import numpy as np
 class Neuron():
     """ neuron class"""
     def __init__(self, nx):
+        """ init function """
         self.nx = nx
         if type(self.nx) != int:
             raise TypeError("nx must be an integer")
