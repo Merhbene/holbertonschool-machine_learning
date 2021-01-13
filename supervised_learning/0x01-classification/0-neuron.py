@@ -4,7 +4,7 @@ import numpy as np
 
 
 class Neuron():
-    """ neuron class"""
+    """ Neuron class"""
     def __init__(self, nx):
         """ init function """
         self.nx = nx
