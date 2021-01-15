@@ -16,7 +16,7 @@ class Neuron():
         # Insert a new axis
         self.W = np.expand_dims(np.random.randn(self.nx), axis=0)
         self.b = 0
-        self.A = 
+        self.A = 0
         
     #Private instance attributes
     @property
