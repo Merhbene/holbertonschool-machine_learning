@@ -14,7 +14,7 @@ class Neuron():
         if self.nx < 1:
             raise ValueError("nx must be a positive integer")
         # Insert a new axis
-        self.W = np.random.randn(1, self.nx)
+        self.W = np.expand_dims(np.random.randn(nx), axis=0)
         self.b = 0
         self.A = 0
         
