@@ -16,15 +16,18 @@ class Neuron():
         self.__b = 0
         self.__A = 0
 
-    """Private instance attributes"""
+    # Private instance attributes
+    """Getter for W """
     @property
     def W(self):
         return(self.__W)
 
+    """Getter for b """
     @property
     def b(self):
         return(self.__b)
 
+    """Getter for b """
     @property
     def A(self):
         return(self.__A)
