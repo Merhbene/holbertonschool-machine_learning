@@ -91,8 +91,9 @@ class NeuralNetwork:
         """Updates"""
         self.__W2 = self.__W2 - (alpha * dw2)
         self.__b2 = self.__b2 - (alpha * db2)
+        dz1 = np.dot(self.__W2.T, A2 - Y) * A1 * (1 - A1)
 
-        dz1 = np.dot(self.__W2.T, dz2) * A1 * (1 - A1)
+        #dz1 = np.dot(self.__W2.T, dz2) * A1 * (1 - A1)
         dw1 = (1 / m)*np.matmul(dz1, X.T)
         db1 = (1 / m)*np.sum(dz1, axis=1, keepdims=True)
 
