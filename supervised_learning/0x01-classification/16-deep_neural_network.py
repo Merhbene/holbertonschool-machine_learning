@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" Deep Neural Network class """
 import numpy as np
 
 
