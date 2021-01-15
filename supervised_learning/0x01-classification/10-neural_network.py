@@ -59,13 +59,13 @@ class NeuralNetwork:
 
 
     def forward_prop(self, X):
-         """Calculates the forward propagation of the neural network"""
-         nx, m = X.shape
+        """Calculates the forward propagation of the neural network"""
+        nx, m = X.shape
 
-         z1 = np.matmul(self.__W1, X) + self.__b1
-         self.__A1 = (1 / (1 + np.exp(-z1)))
+        z1 = np.matmul(self.__W1, X) + self.__b1
+        self.__A1 = (1 / (1 + np.exp(-z1)))
 
-         z2 = np.matmul(self.__W2, self.__A1) + self.__b2
-         self.__A2 = (1 / (1 + np.exp(-z2)))
+        z2 = np.matmul(self.__W2, self.__A1) + self.__b2
+        self.__A2 = (1 / (1 + np.exp(-z2)))
 
-         return  self.__A1, self.__A2
+        return  self.__A1, self.__A2
