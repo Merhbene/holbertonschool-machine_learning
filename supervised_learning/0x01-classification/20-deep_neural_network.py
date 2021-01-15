@@ -71,9 +71,8 @@ class DeepNeuralNetwork:
         c = -(1 / m) * np.sum(Y * np.log(A) + (1 - Y)*(np.log(1.0000001 - A)))
         return c
 
-
     def evaluate(self, X, Y):
-       """Evaluate the neural network’s predictions"""
+        """Evaluate the neural network’s predictions"""
         A, cache = self.forward_prop(X)
         cost = self.cost(Y, A)
-        return np.round(A), cost 
+        return np.round(A), cost
