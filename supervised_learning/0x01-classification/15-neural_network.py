@@ -123,11 +123,11 @@ class NeuralNetwork:
         for i in range(iterations + 1):
             self.__A1, self.__A2 = self.forward_prop(X)
             self.gradient_descent(X, Y, self.__A1, self.__A2, alpha)
-            a, cost = self.evaluate(X, Y)
+            c = self.cost(X, self.__A2)
             if verbose is True:
                   if (i % step == 0) or (i == iterations):
-                      print("Cost after {} iterations: {}".format(i, cost))
-                      Cost.append(cost)
+                      print("Cost after {} iterations: {}".format(i, c))
+                      Cost.append(c)
                       Iteration.append(i)
         if graph is True:
             plt.plot(Iteration, Cost, 'b')
