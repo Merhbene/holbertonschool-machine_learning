@@ -39,15 +39,15 @@ class DeepNeuralNetwork:
                     self.layers[i], self.nx)*np.sqrt(2 / self.nx)
                 self.__weights["b1"] = np.zeros(shape=(self.layers[i], 1))
 
-      @property
-      """L getter"""
-      def L(self):
-         return(self.__L)
-      """cache getter"""
-      @property
-      def cache(self):
-         return(self.__cache)
-      """weights getter"""
-      @property
-      def weights(self):
-         return(self.__weights)
+    @property
+    """L getter"""
+    def L(self):
+       return(self.__L)
+    """cache getter"""
+    @property
+    def cache(self):
+       return(self.__cache)
+    """weights getter"""
+    @property
+    def weights(self):
+       return(self.__weights)
