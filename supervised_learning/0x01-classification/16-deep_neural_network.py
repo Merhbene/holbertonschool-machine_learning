@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import numpy as np
 
-"""A deep neural network performing binary classification"""
+
 class DeepNeuralNetwork:
+    """A deep neural network performing binary classification"""
     def __init__(self, nx, layers):
         self.nx = nx
         self.layers = layers
