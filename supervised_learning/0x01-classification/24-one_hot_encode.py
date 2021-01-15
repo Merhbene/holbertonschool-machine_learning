@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" function one_hot_encode """
 import numpy as np
 
 
