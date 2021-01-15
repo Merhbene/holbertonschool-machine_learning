@@ -21,12 +21,14 @@ class DeepNeuralNetwork:
         self.weights = {}
 
         for i in range(self.L):
-           l = self.layers[i]
-           if not isinstance(l, int) or l == 0:
-               raise ValueError("layers must be a list of positive integers")
-           if i > 0:
-               self.weights["W" + str(i + 1)] = np.random.randn(l, self.layers[i-1])*np.sqrt(2 / self.layers[i-1])
-               self.weights["b" + str(i + 1)] = np.zeros(shape=(l, 1))
-           if i == 0:
-               self.weights["W1"] = np.random.randn(l, self.nx)*np.sqrt(2 / self.nx)
-               self.weights["b1"] = np.zeros(shape=(l, 1))
+            l = self.layers[i]
+            if not isinstance(l, int) or l == 0:
+                raise TypeError("layers must be a list of positive integers")
+            if i > 0:
+                self.weights["W" + str(i + 1)] = np.random.randn(
+                    l, self.layers[i-1])*np.sqrt(2 / self.layers[i-1])
+                self.weights["b" + str(i + 1)] = np.zeros(shape=(l, 1))
+            if i == 0:
+                self.weights["W1"] = np.random.randn(
+                    l, self.nx)*np.sqrt(2 / self.nx)
+                self.weights["b1"] = np.zeros(shape=(l, 1))
