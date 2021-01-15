@@ -59,7 +59,8 @@ class DeepNeuralNetwork:
                 self.__cache["A0"] = X
             else:
                 z = np.matmul(self.__weights["W" + str(i)],
-                              self.__cache["A" + str(i - 1)])+ self.__weights["b" + str(i)]
+                              self.__cache["A" + str(i-1)]) + self.__weights[
+                    "b" + str(i)]
                 self.__cache["A" + str(i)] = 1 / (1 + np.exp(-z))
 
         return self.__cache["A" + str(self.__L)], self.__cache
