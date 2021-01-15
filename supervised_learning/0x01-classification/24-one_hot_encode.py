@@ -8,6 +8,7 @@ def one_hot_encode(Y, classes):
         return None
     try:
         m = Y.shape[0]
+        "classes is the maximum number of classes found in Y"
         Y_one_hot = np.zeros(shape=(classes, m))
         for i in range(m):
             Y_one_hot[Y[i]][i] = 1
