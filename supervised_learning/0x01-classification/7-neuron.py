@@ -64,7 +64,7 @@ class Neuron():
         self.__W = self.__W - (alpha * dw)
         self.__b = self.__b - (alpha * db)
 
-   def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
+    def train(self, X, Y, iterations=5000, alpha=0.05, verbose=True, graph=True, step=100):
         """Train the neuron"""
         if not isinstance(iterations, int):
             raise TypeError("iterations must be an integer")
@@ -85,24 +85,23 @@ class Neuron():
         Iteration = []
 
         for i in range(iterations):
-          a, cost = self.evaluate(X, Y)
-          self.__A = self.forward_prop(X)
-          self.gradient_descent(X, Y, self.__A, alpha)
+            a, cost = self.evaluate(X, Y)
+            self.__A = self.forward_prop(X)
+            self.gradient_descent(X, Y, self.__A, alpha)
 
-          if (i % step == 0 ):
-              Cost.append(cost)
-              Iteration.append(i)
-              if (verbose):
-                  print ("Cost after", i," iterations:", cost)
+            if (i % step == 0 ):
+                Cost.append(cost)
+                Iteration.append(i)
+                if (verbose):
+                    print("Cost after", i," iterations:", cost)
 
 
       
         if (graph):
-
-          plt.plot(Iteration, Cost, 'b')
-          plt.ylabel('cost')
-          plt.xlabel('iteration')
-          plt.title("Training Cost")
-          plt.show()
+             plt.plot(Iteration, Cost, 'b')
+             plt.ylabel('cost')
+             plt.xlabel('iteration')
+             plt.title("Training Cost")
+             plt.show()
 
         return self.evaluate(X, Y)
