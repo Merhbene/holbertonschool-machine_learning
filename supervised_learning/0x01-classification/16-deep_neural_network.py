@@ -24,10 +24,12 @@ class DeepNeuralNetwork:
         for i in range(self.L):
             if not isinstance(self.layers[i], int) or (self.layers[i] <= 0):
                 raise TypeError("layers must be a list of positive integers")
-            "The weights of the network should be initialized using the He et al. method"
+            """The weights of the network should be initialized using
+            the He et al. method"""
             if i > 0:
                 self.weights["W" + str(i + 1)] = np.random.randn(
-                    self.layers[i], self.layers[i-1])*np.sqrt(2 / self.layers[i-1])
+                    self.layers[i], self.layers[i-1])*np.sqrt(
+                    2 / self.layers[i-1])
                 self.weights["b" + str(i + 1)] = np.zeros(shape=(self.layers[i], 1))
             if i == 0:
                 self.weights["W1"] = np.random.randn(
