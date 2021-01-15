@@ -9,12 +9,12 @@ class DeepNeuralNetwork:
         self.layers = layers
 
         if type(self.nx) != int:
-             raise TypeError("nx must be an integer")
+            raise TypeError("nx must be an integer")
         if self.nx < 1:
-             raise ValueError("nx must be a positive integer")
+            raise ValueError("nx must be a positive integer")
 
         if type(self.layers) != list or len(self.layers) == 0:
-              raise TypeError("layers must be a list of positive integers")
+            raise TypeError("layers must be a list of positive integers")
         """ Public instance attributes"""
         self.L = len(self.layers)
         self.cache = {}
