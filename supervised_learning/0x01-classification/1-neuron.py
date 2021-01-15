@@ -16,7 +16,7 @@ class Neuron():
         self.__b = 0
         self.__A = 0
 
-    # Private instance attributes
+    """Private instance attributes"""
     @property
     def W(self):
         return(self.__W)
