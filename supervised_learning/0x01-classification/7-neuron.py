@@ -83,7 +83,6 @@ class Neuron():
         m = Y.shape[1]
         Cost = []
         Iteration = []
-
         for i in range(iterations):
             a, cost = self.evaluate(X, Y)
             self.__A = self.forward_prop(X)
@@ -93,10 +92,7 @@ class Neuron():
                 Cost.append(cost)
                 Iteration.append(i)
                 if (verbose):
-                    print("Cost after", i," iterations:", cost)
-
-
-      
+                    print("Cost after", i," iterations:", cost)  
         if (graph):
              plt.plot(Iteration, Cost, 'b')
              plt.ylabel('cost')
