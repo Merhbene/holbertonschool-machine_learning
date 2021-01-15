@@ -7,7 +7,8 @@ class DeepNeuralNetwork:
     def __init__(self, nx, layers):
         self.nx = nx
         self.layers = layers
-        """layers is a list representing the number of nodes in each layer of the network"""
+        """layers is a list representing the number of nodes in each
+        layer of the network"""
         if type(self.nx) != int:
             raise TypeError("nx must be an integer")
         if self.nx < 1:
@@ -22,14 +23,13 @@ class DeepNeuralNetwork:
         self.weights = {}
 
         for i in range(self.L):
-            l = layers[i]
-            if not isinstance(l, int) or l == 0:
+            if not isinstance(layers[i], int) or layers[i] == 0:
                 raise TypeError("layers must be a list of positive integers")
             if i > 0:
                 self.weights["W" + str(i + 1)] = np.random.randn(
-                    l, self.layers[i-1])*np.sqrt(2 / self.layers[i-1])
+                    layers[i], self.layers[i-1])*np.sqrt(2 / self.layers[i-1])
                 self.weights["b" + str(i + 1)] = np.zeros(shape=(l, 1))
             if i == 0:
                 self.weights["W1"] = np.random.randn(
-                    l, self.nx)*np.sqrt(2 / self.nx)
-                self.weights["b1"] = np.zeros(shape=(l, 1))
+                    layers[i], self.nx)*np.sqrt(2 / self.nx)
+                self.weights["b1"] = np.zeros(shape=(layers[i], 1))
