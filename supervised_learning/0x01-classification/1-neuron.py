@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+""" new class """
 import numpy as np
 
 
@@ -11,12 +12,11 @@ class Neuron():
             raise TypeError("nx must be an integer")
         if self.nx < 1:
             raise ValueError("nx must be a positive integer")
-        # Insert a new axis
+        # Private instance attributes
         self.__W = np.expand_dims(np.random.normal(size=self.nx), axis=0)
         self.__b = 0
         self.__A = 0
 
-    # Private instance attributes
     """Getter for W """
     @property
     def W(self):
@@ -27,7 +27,7 @@ class Neuron():
     def b(self):
         return(self.__b)
 
-    """Getter for b """
+    """Getter for A """
     @property
     def A(self):
         return(self.__A)
