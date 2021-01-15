@@ -12,7 +12,7 @@ def one_hot_decode(one_hot):
         for i in range(m):
             for j in range(classes):
                 if one_hot[j][i] == 1:
-                   Y_decoded[i] = j
+                    Y_decoded[i] = j
         return Y_decoded.astype(int)
     except Exception:
         return None
