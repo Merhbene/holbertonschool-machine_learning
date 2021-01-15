@@ -19,12 +19,12 @@ class DeepNeuralNetwork:
         """ Public instance attributes"""
         self.L = len(self.layers)
         self.cache = {}
-        """ A dictionary to hold all weights and biased of the network"""
         self.weights = {}
 
         for i in range(self.L):
-            if not isinstance(self.layers[i], int) or self.layers[i] == 0:
+            if not isinstance(self.layers[i], int) or (self.layers[i] <= 0):
                 raise TypeError("layers must be a list of positive integers")
+            "The weights of the network should be initialized using the He et al. method"
             if i > 0:
                 self.weights["W" + str(i + 1)] = np.random.randn(
                     self.layers[i], self.layers[i-1])*np.sqrt(2 / self.layers[i-1])
