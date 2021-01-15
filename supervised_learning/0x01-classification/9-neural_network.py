@@ -38,12 +38,12 @@ class NeuralNetwork:
         return(self.__W2)
 
     """ Getter function for b1"""
-    @property  
+    @property
     def b1(self):
         return(self.__b1)
 
     """ Getter function for b2"""
-    @property  
+    @property
     def b2(self):
         return(self.__b2)
 
@@ -55,6 +55,4 @@ class NeuralNetwork:
     """ Getter function for A2"""
     @property
     def A2(self):
-         return(self.__A2)
-
-    
+        return(self.__A2)
