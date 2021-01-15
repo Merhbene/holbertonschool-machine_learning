@@ -38,9 +38,8 @@ class DeepNeuralNetwork:
                 self.__weights["W1"] = np.random.randn(
                     self.layers[i], self.nx)*np.sqrt(2 / self.nx)
                 self.__weights["b1"] = np.zeros(shape=(self.layers[i], 1))
-
-    @property
     """L getter"""
+    @property
     def L(self):
        return(self.__L)
     """cache getter"""
