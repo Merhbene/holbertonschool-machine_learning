@@ -80,4 +80,3 @@ class NeuralNetwork:
         A1, A2 = self.forward_prop(X)
         a = np.where(A2 < 0.5, 0, 1)
         return a, self.cost(Y, A2)
-
