@@ -12,11 +12,11 @@ class NeuralNetwork:
 
         if type(self.nx) != int:
             raise TypeError("nx must be an integer")
-        if self.nx < 1 :
+        if self.nx < 1:
             raise ValueError("nx must be a positive integer")
         if type(self.nodes) != int:
             raise TypeError("nodes must be an integer")
-        if self.nodes < 1 :
+        if self.nodes < 1:
             raise ValueError("nodes must be a positive integer")
 
         """Public instance attributes"""
