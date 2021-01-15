@@ -27,34 +27,34 @@ class NeuralNetwork:
         self.__b2 = 0
         self.__A2 = 0
 
-        """ Getter function for W1"""
-        @property
-        def W1(self):
-           return(self.__W1)
+    """ Getter function for W1"""
+    @property
+    def W1(self):
+        return(self.__W1)
 
-        """ Getter function for W2"""
-        @property
-        def W2(self):
-           return(self.__W2)
+    """ Getter function for W2"""
+    @property
+    def W2(self):
+        return(self.__W2)
 
-        """ Getter function for b1"""
-        @property  
-        def b1(self):
-            return(self.__b1)
+    """ Getter function for b1"""
+    @property  
+    def b1(self):
+        return(self.__b1)
 
-        """ Getter function for b2"""
-        @property  
-        def b2(self):
-            return(self.__b2)
+    """ Getter function for b2"""
+    @property  
+    def b2(self):
+        return(self.__b2)
 
-        """ Getter function for A1"""
-        @property
-        def A1(self):
-            return(self.__A1)
+    """ Getter function for A1"""
+    @property
+    def A1(self):
+        return(self.__A1)
 
-        """ Getter function for A2"""
-        @property
-        def A2(self):
-             return(self.__A2)
+    """ Getter function for A2"""
+    @property
+    def A2(self):
+         return(self.__A2)
 
     
