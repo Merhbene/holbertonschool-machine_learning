@@ -30,8 +30,10 @@ class DeepNeuralNetwork:
                 self.weights["W" + str(i + 1)] = np.random.randn(
                     self.layers[i], self.layers[i-1])*np.sqrt(
                     2 / self.layers[i-1])
-                self.weights["b" + str(i + 1)] = np.zeros(shape=(self.layers[i], 1))
+                self.weights["b" + str(i + 1)] = np.zeros(
+                    shape=(self.layers[i], 1))
             if i == 0:
+                """The first layer"""
                 self.weights["W1"] = np.random.randn(
                     self.layers[i], self.nx)*np.sqrt(2 / self.nx)
                 self.weights["b1"] = np.zeros(shape=(self.layers[i], 1))
