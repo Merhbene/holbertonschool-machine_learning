@@ -15,9 +15,9 @@ class NeuralNetwork:
         if self.nx < 1 :
             raise ValueError("nx must be a positive integer")
         if type(self.nodes) != int:
-            raise TypeError("nx must be an integer")
+            raise TypeError("nodes must be an integer")
         if self.nodes < 1 :
-            raise ValueError("nx must be a positive integer")
+            raise ValueError("nodes must be a positive integer")
 
         """Public instance attributes"""
         self.W1 = np.random.normal(size=(self.nodes, self.nx))
