@@ -1,6 +1,4 @@
-  
-#!/usr/bin/env python3
-""" new class """
+  #!/usr/bin/env python3
 import numpy as np
 
 
@@ -14,9 +12,9 @@ class Neuron():
         if self.nx < 1:
             raise ValueError("nx must be a positive integer")
         # Insert a new axis
-        self.__W=np.expand_dims(np.random.normal(size=self.nx),axis=0)
-        self.__b=0
-        self.__A=0
+        self.__W = np.expand_dims(np.random.normal(size = self.nx), axis = 0)
+        self.__b = 0
+        self.__A = 0
         
     #Private instance attributes
     @property
