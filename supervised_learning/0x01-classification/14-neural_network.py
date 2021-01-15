@@ -113,8 +113,8 @@ class NeuralNetwork:
         m = Y.shape[1]
 
         for i in range(iterations):
-          self.__A1, self.__A2 = self.forward_prop(X)
-          """Updates"""
-          self.gradient_descent(X, Y, self.__A1, self.__A2, alpha)
+            self.__A1, self.__A2 = self.forward_prop(X)
+            """Updates"""
+            self.gradient_descent(X, Y, self.__A1, self.__A2, alpha)
 
         return self.evaluate(X, Y)
