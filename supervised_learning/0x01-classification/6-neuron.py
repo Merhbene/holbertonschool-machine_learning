@@ -65,20 +65,20 @@ class Neuron():
         self.__b = self.__b - (alpha * db)
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
-          """Train the neuron"""
-          if not isinstance(iterations, int):
-              raise TypeError ("iterations must be an integer")
-          if (iterations < 0):
+        """Train the neuron"""
+        if not isinstance(iterations, int):
+             raise TypeError ("iterations must be an integer")
+        if (iterations < 0):
              raise ValueError("iterations must be a positive integer")
-          if not isinstance(alpha, float):
-              raise TypeError ("alpha must be a float")
-          if (alpha < 0):
-             raise ValueError("alpha must be positive ")
+        if not isinstance(alpha, float):
+             raise TypeError ("alpha must be a float")
+        if (alpha < 0):
+             raise ValueError("alpha must be positive")
 
-          m = Y.shape[1]
-          for i in range(iterations):
-              """Forward propagation"""
-              self.__A = self.forward_prop(X)
-              """Update weights and bias"""
-              self.gradient_descent(X, Y, self.__A, alpha)
-          return self.evaluate(X, Y)
+        m = Y.shape[1]
+        for i in range(iterations):
+             """Forward propagation"""
+             self.__A = self.forward_prop(X)
+             """Update weights and bias"""
+             self.gradient_descent(X, Y, self.__A, alpha)
+        return self.evaluate(X, Y)
