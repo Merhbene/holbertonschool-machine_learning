@@ -73,14 +73,11 @@ class NeuralNetwork:
         """Calculate the cost of the model using logistic regression"""
         m = Y.shape[1]
         c = -(1 / m) * np.sum(Y * np.log(A) + (1 - Y)*(np.log(1.0000001 - A)))
-
         return c
-      
 
     def evaluate(self, X, Y):
         """Evaluates the neural network’s predictions"""
         A1, A2 = self.forward_prop(X)
         a = np.where(A2 < 0.5, 0, 1)
         return a, self.cost(Y, A2)
-    
 
