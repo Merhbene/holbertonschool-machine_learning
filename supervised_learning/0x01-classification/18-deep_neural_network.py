@@ -55,12 +55,11 @@ class DeepNeuralNetwork:
         """Calculate the forward propagation of the neural network"""
         m = X.shape[1]
         for i in range(self.__L + 1):
-          if i == 0:
-            self.__cache["A0"] = X
-          else:
-            z = np.dot(self.__weights["W"+str(i)], self.__cache["A" + str(i - 1)]) + self.__weights["b" + str(i)]
-            self.__cache["A" + str(i)] = 1 / (1 + np.exp(-z))
+            if i == 0:
+               self.__cache["A0"] = X
+            else:
+                z = np.dot(self.__weights["W"+str(i)], self.__cache["A" + str(i - 1)])
+                + self.__weights["b" + str(i)]
+                self.__cache["A" + str(i)] = 1 / (1 + np.exp(-z))
 
         return self.__cache["A" + str(self.__L)], self.__cache
-
-
