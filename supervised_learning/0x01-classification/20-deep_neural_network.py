@@ -75,4 +75,6 @@ class DeepNeuralNetwork:
         """Evaluate the neural network’s predictions"""
         A, cache = self.forward_prop(X)
         cost = self.cost(Y, A)
-        return np.round(A), cost
+        A1 = np.where(A < 0.5, 0, 1)
+
+        return A1, cost
