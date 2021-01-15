@@ -7,7 +7,7 @@ class DeepNeuralNetwork:
     def __init__(self, nx, layers):
         self.nx = nx
         self.layers = layers
-
+        """layers is a list representing the number of nodes in each layer of the network"""
         if type(self.nx) != int:
             raise TypeError("nx must be an integer")
         if self.nx < 1:
@@ -18,10 +18,11 @@ class DeepNeuralNetwork:
         """ Public instance attributes"""
         self.L = len(self.layers)
         self.cache = {}
+        """ A dictionary to hold all weights and biased of the network"""
         self.weights = {}
 
         for i in range(self.L):
-            l = self.layers[i]
+            l = layers[i]
             if not isinstance(l, int) or l == 0:
                 raise TypeError("layers must be a list of positive integers")
             if i > 0:
