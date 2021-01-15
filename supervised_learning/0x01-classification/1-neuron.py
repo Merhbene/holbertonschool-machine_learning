@@ -21,7 +21,7 @@ class Neuron():
     def W(self):
         return(self.__W)
 
-    @property  
+    @property
     def b(self):
         return(self.__b)
 
