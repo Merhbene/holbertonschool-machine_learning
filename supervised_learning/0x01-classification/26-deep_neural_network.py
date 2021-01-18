@@ -118,16 +118,16 @@ class DeepNeuralNetwork:
             A, self.__cache = self.forward_prop(X)
             self.gradient_descent(Y, self.__cache, alpha)
 
-            if (i % step == 0 ) or (i==iterations):
-              Cost.append(cost)
-              Iteration.append(i)
-              if (verbose) :
-                 print ("Cost after", i," iterations:", cost)
+            if (i % step == 0 ) or (i == iterations):
+                 Cost.append(cost)
+                 Iteration.append(i)
+                 if (verbose):
+                     print ("Cost after", i, " iterations:", cost)
 
 
       
         if (graph):
-            plt.plot(Iteration,Cost)
+            plt.plot(Iteration, Cost)
             plt.ylabel('cost')
             plt.xlabel('iteration')
             plt.title("Training Cost")
@@ -136,17 +136,17 @@ class DeepNeuralNetwork:
         return self.evaluate(X, Y)
         
     def save(self, filename):
-        """Saves the instance object to a 
+        """Save the instance object to a 
         file in pickle format"""
         import pickle
         if not filename.endswith(".pkl"):
             filename = filename + ".pkl"
         with open(filename, 'wb') as file:
-            pickle.dump( self, file)
+            pickle.dump(self, file)
 
     @staticmethod
     def load(filename):
-        """Loads a pickled DeepNeuralNetwork object"""
+        """Load a pickled DeepNeuralNetwork object"""
         import pickle
         try:
             with open(filename) as file:
