@@ -134,24 +134,13 @@ class DeepNeuralNetwork:
             plt.show()
 
         return self.evaluate(X, Y)
-    """
+
     def save(self, filename):
         """Save the instance object to a file"""
         if not(filename.endswith(".pkl")):
             filename = filename + ".pkl"
         with open(filename, "wb") as fl:
             pickle.dump(self, fl)
-    """
-    def save(self, filename):
-    filename = filename + ".pkl" if ('.pkl'not in filename) else filename
-
-    try:
-        file_binary = open(filename, 'wb')
-        pickle.dump(self, file_binary)
-        file_binary.close()
-
-    except BaseException:
-        return None
 
     @staticmethod
     def load(filename):
