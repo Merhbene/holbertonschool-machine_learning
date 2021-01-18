@@ -4,7 +4,6 @@ import numpy as np
 import pickle
 
 
-
 class DeepNeuralNetwork:
     """A deep neural network performing binary classification"""
     def __init__(self, nx, layers):
@@ -95,8 +94,8 @@ class DeepNeuralNetwork:
             self.__weights["b" + str(i)] = self.__weights[
                 "b" + str(i)]-(alpha * db)
 
-    def train(self, X, Y, iterations=5000, alpha=0.05, 
-              verbose=True, graph=True, step=100):
+    def train(self, X, Y, iterations=5000, alpha=0.05
+              ,verbose=True, graph=True, step=100):
         """Trains the deep neural network"""
         if not isinstance(iterations, int):
             raise TypeError("iterations must be an integer")
@@ -117,18 +116,16 @@ class DeepNeuralNetwork:
         Cost = []
         Iteration = []
         for i in range(iterations + 1):
-            a, cost=self.evaluate(X, Y)
+            a, cost = self.evaluate(X, Y)
             A, self.__cache = self.forward_prop(X)
             self.gradient_descent(Y, self.__cache, alpha)
 
-            if (i % step == 0 ) or (i == iterations):
-                 Cost.append(cost)
-                 Iteration.append(i)
-                 if (verbose):
-                     print ("Cost after", i, " iterations:", cost)
+            if (i % step == 0) or (i == iterations):
+                Cost.append(cost)
+                Iteration.append(i)
+                if (verbose):
+                    print("Cost after", i, " iterations:", cost)
 
-
-      
         if (graph):
             plt.plot(Iteration, Cost)
             plt.ylabel('cost')
