@@ -114,9 +114,9 @@ class DeepNeuralNetwork:
         Cost = []
         Iteration = []
         for i in range(iterations + 1):
+            a, cost=self.evaluate(X, Y)
             A, self.__cache = self.forward_prop(X)
             self.gradient_descent(Y, self.__cache, alpha)
-            a, cost=self.evaluate(X, Y)
 
             if (i % step == 0 ) or (i==iterations):
               Cost.append(cost)
