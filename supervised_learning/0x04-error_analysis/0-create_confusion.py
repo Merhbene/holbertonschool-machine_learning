@@ -13,7 +13,7 @@ def create_confusion_matrix(labels, logits):
             "m is the number of data points"
             if logits[line][c] == 1:
                 for col in range(classes):
-                    "add to the confusion matrix"
+                    #add to the confusion matrix
                     confusion_matrix[col][c] += labels[line][col]
-
+    #return the matrix
     return confusion_matrix
