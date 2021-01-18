@@ -13,6 +13,6 @@ def create_confusion_matrix(labels, logits):
         for line in range (m):
             if logits[line][c] == 1:
                 for col in range (classes):
-                    confusion_matrix[col][c] = confusion_matrix[col][c]+labels[line][col]
+                    confusion_matrix[col][c] += labels[line][col]
 
      return confusion_matrix
