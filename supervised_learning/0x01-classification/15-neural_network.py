@@ -121,9 +121,9 @@ class NeuralNetwork:
         Cost = []
         Iteration = []
         for i in range(iterations + 1):
+            a, cost = self.evaluate(X, Y)
             self.__A1, self.__A2 = self.forward_prop(X)
             self.gradient_descent(X, Y, self.__A1, self.__A2, alpha)
-            a, cost = self.evaluate(X, Y)
             if verbose is True:
                   if (i % step == 0) or (i == iterations):
                       print("Cost after {} iterations: {}".format(i, cost))
