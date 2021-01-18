@@ -12,10 +12,10 @@ def create_confusion_matrix(labels, logits):
     confusion_matrix = np.zeros((classes, classes))
     """m is the number of data points"""
     for c in range(classes):
-       for line in range(m):
-           if logits[line][c] == 1:
-              for col in range(classes):
-                  confusion_matrix[col][c] += labels[line][col]
+        for line in range(m):
+            if logits[line][c] == 1:
+                for col in range(classes):
+                    confusion_matrix[col][c] += labels[line][col]
 
     return confusion_matrix
 
