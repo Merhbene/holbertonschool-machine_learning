@@ -18,3 +18,4 @@ def create_confusion_matrix(labels, logits):
                   confusion_matrix[col][c] += labels[line][col]
 
     return confusion_matrix
+
