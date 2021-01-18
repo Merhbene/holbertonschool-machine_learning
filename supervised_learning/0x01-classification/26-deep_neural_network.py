@@ -136,7 +136,8 @@ class DeepNeuralNetwork:
         return self.evaluate(X, Y)
         
     def save(self, filename):
-        """Saves the instance object to a file in pickle format"""
+        """Saves the instance object to a 
+        file in pickle format"""
         import pickle
         if not filename.endswith(".pkl"):
             filename = filename + ".pkl"
@@ -149,7 +150,7 @@ class DeepNeuralNetwork:
         import pickle
         try:
             with open(filename) as file:
-                p = ickle.load(self, file)
+                p = pickle.load(self, file)
             return p
         except FileNotFoundError:
             return None 
