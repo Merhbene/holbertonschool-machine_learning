@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 import numpy as np
 
-def __init__(self, name):
-    self.name = name
 
 def create_confusion_matrix(labels, logits):
     """labels is a one-hot numpy.ndarray of shape (m, classes)
