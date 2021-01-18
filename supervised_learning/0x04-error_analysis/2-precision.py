@@ -3,7 +3,7 @@ import numpy as np
 """ new function"""
 
 
-def  precision(confusion):
+def precision(confusion):
     classes = confusion.shape[0]
     precision = np.zeros((classes,))
     for j in range(classes):
