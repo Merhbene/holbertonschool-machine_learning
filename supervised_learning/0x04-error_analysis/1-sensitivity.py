@@ -4,7 +4,8 @@ import numpy as np
 
 
 def sensitivity(confusion):
-    """"Sensitivity measures the proportion of 
+    """"
+    Sensitivity measures the proportion of
     positives that are correctly identified
     """
     classes = confusion.shape[0]
