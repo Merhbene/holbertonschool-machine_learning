@@ -3,7 +3,7 @@ import numpy as np
 """ new function"""
 
 
-def specificity(confusion): 
+def specificity(confusion):
     classes = confusion.shape[0]
     specificity = np.zeros((classes,))
     for j in range(classes):
