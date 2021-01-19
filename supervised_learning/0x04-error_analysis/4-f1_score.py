@@ -18,5 +18,5 @@ def f1_score(confusion):
         FN = np.sum(np.delete(confusion, [j],axis=1), axis=1)[j]
         f1_score[j] = TP / (TP + 0.5 * (FP + FN))
     """
-    
+
     return f1_score
