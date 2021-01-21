@@ -5,17 +5,23 @@ import numpy as np
 
 def dropout_forward_prop(X, weights, L, keep_prob):
     "conduct forward propagation using Dropout"
-    m = X.shape[1]
-    D = {}
-    D["A0"] = X
-    for i in range(L+1):
-        if i == L:
-            z = np.matmul(weights["W" + str(i)], D["A" + str(i-1)]) + weights["b" + str(i)]
-            A = (np.exp(z) / np.sum(np.exp(z), axis=0, keepdims=True))
-            D["A" + str(i)] = A
+    cache = {'A0': X}
+
+    for i in range(L):
+        W_key = "W{}".format(i + 1)
+        b_key = "b{}".format(i + 1)
+        A_key_prev = "A{}".format(i)
+        A_key_forw = "A{}".format(i + 1)
+        D_key = "D{}".format(i + 1)
+
+        Z = np.matmul(weights[W_key], cache[A_key_prev]) + weights[b_key]
+        drop = np.random.binomial(1, keep_prob, size=Z.shape)
+
+        if i == L - 1:
+            t = np.exp(Z)
+            cache[A_key_forw] = (t / np.sum(t, axis=0, keepdims=True))
         else:
-            z = np.matmul(weights["W" + str(i+1)], D["A" + str(i)]) + weights["b" + str(i+1)]
-            A = np.tanh(z)
-            D["D" + str(i+1)] = np.random.binomial(1, keep_prob, A.shape)
-            D["A" + str(i+1)] = (A * D["D" + str(i+1)]) / keep_prob
-    return D
+            cache[A_key_forw] = np.tanh(Z)
+            cache[D_key] = drop
+            cache[A_key_forw] = (cache[A_key_forw] * cache[D_key]) / keep_prob
+    return cache
