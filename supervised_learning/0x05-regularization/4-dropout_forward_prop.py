@@ -7,16 +7,19 @@ def dropout_forward_prop(X, weights, L, keep_prob):
     "conduct forward propagation using Dropout"
     m = X.shape[1]
     D={}
-    for i in range(L + 1):
-       if i == 0:
-          D["D1"] = np.random.binomial(1, keep_prob, X.shape)
-          D["A0"] = X * D["D1"]
+    D["A0"] = X 
 
+    for i in range( L):
+
+       if i == (L - 1) :
+          z = np.matmul(weights["W" + str(i)], D["A" + str(i-1)]) + weights["b" + str(i)]
+          A = (np.exp(z) / np.sum(np.exp(z), axis=0, keepdims=True))
+          D["A" + str(i-1)] = A
        else:
-          z = np.matmul(weights["W" + str(i)], 
-                    D["A" + str(i-1)]) + weights["b" + str(i)]
+
+          z = np.matmul(weights["W" + str(i+1)], D["A" + str(i)]) + weights["b" + str(i+1)]
           A = np.tanh(z) 
           D["D" + str(i+1)] = np.random.binomial(1, keep_prob, A.shape)
-          D["A" + str(i)] = (A * D["D" + str(i+1)]) / keep_prob 
+          D["A" + str(i+1)] = (A * D["D" + str(i+1)]) / keep_prob 
 
     return D
