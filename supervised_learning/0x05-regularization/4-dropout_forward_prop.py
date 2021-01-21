@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 "A Dropout function"
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
 
 
 def dropout_forward_prop(X, weights, L, keep_prob): 
