@@ -14,7 +14,7 @@ def dropout_forward_prop(X, weights, L, keep_prob):
        if i == (L - 1) :
           z = np.matmul(weights["W" + str(i)], D["A" + str(i-1)]) + weights["b" + str(i)]
           A = (np.exp(z) / np.sum(np.exp(z), axis=0, keepdims=True))
-          D["A" + str(i-1)] = A
+          D["A" + str(i)] = A
        else:
 
           z = np.matmul(weights["W" + str(i+1)], D["A" + str(i)]) + weights["b" + str(i+1)]
