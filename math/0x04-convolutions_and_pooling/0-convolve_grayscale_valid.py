@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 import numpy as np
-
+"Performs a valid convolution on grayscale images"
 
 def convolve_grayscale_valid(images, kernel):
+    """images is a numpy.ndarray with shape (m, h, w)
+    containing multiple grayscale images
 
+    kernel is a numpy.ndarray with shape (kh, kw)
+    containing the kernel for the convolution """
+    
     m, h, w = images.shape
     kh, kw = kernel.shape
 
