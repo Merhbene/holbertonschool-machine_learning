@@ -22,9 +22,9 @@ def convolve_grayscale_valid(images, kernel):
             x = i + kh
             y = j + kw
             #outputs[image, i, j] = np.sum(np.multiply(images[image, i: x, j: y], kernel), axis=(1, 2)) "marche"
-            #outputs[image, i, j] = (images[image, i:x, j:y] * kernel).sum() "ne marche pas"
-            
+            outputs[image, i, j] = (images[image, i:x, j:y] * kernel).sum(axis=(1, 2)) "ne marche pas"
+            """
             M = images[:,i:x, j:y] 
             outputs[:,i, j] = np.tensordot(M, kernel)
-
+            """
     return outputs
