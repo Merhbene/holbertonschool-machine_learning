@@ -14,16 +14,17 @@ def convolve_grayscale_valid(images, kernel):
     outputs = np.zeros(output_dim)
 
     # vectorizing the m images
-    image = np.arange(0, m)
+    #image = np.arange(0, m)
 
     # iterating over the output array and generating the convolution
     for i in range(output_dim[1]):
         for j in range(output_dim[2]):
             x = i + kh
             y = j + kw
-            #outputs[image, i, j] = np.sum(np.multiply(images[image, i: x, j: y], kernel), axis=(1, 2))
-            #outputs[image, i, j] = (images[image, i:x, j:y] * kernel).sum()
-            M = images[image,i:x, j:y] 
-            outputs[image,i, j] = np.tensordot(M, kernel)
+            #outputs[image, i, j] = np.sum(np.multiply(images[image, i: x, j: y], kernel), axis=(1, 2)) "marche"
+            #outputs[image, i, j] = (images[image, i:x, j:y] * kernel).sum() "ne marche pas"
+            
+            M = images[:,i:x, j:y] 
+            outputs[:,i, j] = np.tensordot(M, kernel)
 
     return outputs
