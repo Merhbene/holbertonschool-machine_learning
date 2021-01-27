@@ -15,7 +15,7 @@ def convolve_grayscale_valid(images, kernel):
 
 
     # creating outputs of size: n_images, o_h x o_w
-    outputs = np.zeros((n_images, o_h, o_w))
+    outputs = np.zeros((m, o_h, o_w))
 
     # vectorizing the n_images
     images_array = np.arange(0, m)
