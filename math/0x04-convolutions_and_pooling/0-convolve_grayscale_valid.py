@@ -10,7 +10,7 @@ def convolve_grayscale_valid(images, kernel):
     # output shape
     output_dim = (m, h - kh + 1, w - kw + 1)
 
-    # creating outputs 
+    # creating outputs
     outputs = np.zeros(output_dim)
 
     # vectorizing the m images
