@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import numpy as np
-from math import ceil, floor
+
 
 def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
     m, h, w = images.shape
@@ -19,8 +19,8 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
        ph, pw = padding[0], padding[1]
 
 
-    oh = floor(((h + 2 * ph - kh) / sh) + 1)
-    ow = floor(((w + 2 * pw - kw) / sw) + 1)
+    oh = int(((h + 2 * ph - kh) / sh) + 1)
+    ow = int(((w + 2 * pw - kw) / sw) + 1)
 
 
     output_dim = (m, oh, ow)
