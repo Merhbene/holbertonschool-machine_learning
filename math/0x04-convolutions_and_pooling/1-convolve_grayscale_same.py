@@ -17,7 +17,6 @@ def convolve_grayscale_same(images, kernel):
 
 
     # output_height and output_width
-    # H = i_h + 2pad - k_h + 1, W = i_w + 2pad - k_w + 1
     oh = h + 2 * ph - kh + int(kh % 2 == 1)
     ow = w + 2 * pw - kw + int(kw % 2 == 1)
 
