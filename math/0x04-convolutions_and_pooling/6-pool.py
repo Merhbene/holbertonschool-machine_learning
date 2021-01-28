@@ -1,6 +1,6 @@
 #!/usr/bin/env python3 
 import numpy as np
-from math import ceil, floor
+
 
 def pool(images, kernel_shape, stride, mode='max'):
     m, h, w, c = images.shape
