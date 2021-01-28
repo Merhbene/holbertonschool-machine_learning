@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import numpy as np
-from math import ceil, floor
+
 
 def convolve(images, kernels, padding='same', stride=(1, 1)):
     m, h, w, c = images.shape
