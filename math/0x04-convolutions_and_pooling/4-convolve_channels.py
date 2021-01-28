@@ -33,6 +33,6 @@ def convolve_channels(images, kernel, padding='same', stride=(1, 1)):
             y = (j * sw) + kw
 
             M = padded_images[:, (i * sh):x, (j * sw):y, :]
-            outputs[:, i, j] = np.tensordot(M, kernel).sum()
+            outputs[:, i, j] = np.tensordot(M, kernel, axes = 3)
 
     return outputs
