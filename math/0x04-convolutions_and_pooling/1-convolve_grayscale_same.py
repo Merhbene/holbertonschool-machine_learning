@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 "new function"
 import numpy as np
-from math import ceil, floor
 "Performs a valid convolution on grayscale images"
 
 
