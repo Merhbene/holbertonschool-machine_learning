@@ -10,8 +10,8 @@ def convolve_grayscale_same(images, kernel):
     m, h, w = images.shape
     kh, kw = kernel.shape
 
-    ph = int((kh - int(kh % 2 == 1)) / 2) # the total rows added 
-    pw = int((kw - int(kh % 2 == 1)) / 2) # the total coloumns added 
+    ph = kh // 2 # the total rows added 
+    pw = kw // 2 # the total coloumns added 
     "to give the input and output the same height and width"
 
 
