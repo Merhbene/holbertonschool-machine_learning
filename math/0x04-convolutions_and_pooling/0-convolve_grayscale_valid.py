@@ -4,11 +4,8 @@ import numpy as np
 
 
 def convolve_grayscale_valid(images, kernel):
-    """images is a numpy.ndarray with shape (m, h, w)
-    containing multiple grayscale images
-
-    kernel is a numpy.ndarray with shape (kh, kw)
-    containing the kernel for the convolution """
+    """images contains multiple grayscale images"""
+    """kernel contains the kernel for the convolution"""
 
     m, h, w = images.shape
     kh, kw = kernel.shape
