@@ -9,8 +9,8 @@ def pool_forward(A_prev, kernel_shape, stride=(1, 1), mode='max'):
 
     sh, sw = stride[0], stride[1]
 
-    oh = int(((h  - kh) / sh) + 1)
-    ow = int(((w - kw) / sw) + 1)
+    oh = int(((h_prev  - kh) / sh) + 1)
+    ow = int(((w_prev - kw) / sw) + 1)
 
     output_dim = (m, oh, ow, c_prev)
 
