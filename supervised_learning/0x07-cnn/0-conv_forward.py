@@ -12,8 +12,8 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
        ph = pw = 0
 
     else:
-       ph = int((((h - 1) * sh + kh - h) / 2) + (kh % 2 == 0))
-       pw = int((((w - 1) * sw + kw - w) / 2) + (kh % 2 == 0))
+       ph = int((((h - 1) * sh + kh - h) / 2) + 1)
+       pw = int((((w - 1) * sw + kw - w) / 2) + 1)
 
 
     oh = int(((h + 2 * ph - kh) / sh) + 1)
