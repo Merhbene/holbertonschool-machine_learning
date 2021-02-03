@@ -19,29 +19,20 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
 
     #A_prev = np.pad(A_prev, pad_width=((0, 0),(ph, ph),(pw, pw),(0, 0)), mode='constant', constant_values=0)
 
-    dW = np.zeros(W.shape)
-    db = np.sum(dZ,axis=(0,1,2),keepdims=True)
-    dA = np.zeros(A_prev.shape)
+    dW = np.zeros_like(W)
+    dx = np.zeros_like(A_prev)
+    for m_i in range(m):
+        for h in range(h_new):
+            for w in range(w_new):
+                for f in range(c_new):
+                    tmp_W = W[:, :, :, f]
 
+                    tmp_dz = dZ[m_i, h, w, f]
+                    dx[m_i, h*sh:h*sh+kh, w*sw:w*sw+kw, :] += tmp_dz * tmp_W
 
-    for img in range(m):
+                    tmp_A_prev = A_prev[m_i, h*sh:h*sh+kh, w*sw:w*sw+kw, :]
+                    dW[:, :, :, f] += tmp_A_prev * tmp_dz
 
-        for i in range(h_new):
-            for j in range(w_new):
-              for f in range(c_new):
-                
+    dx = dx[:, ph:dx.shape[1]-ph, pw:dx.shape[2]-pw, :]
 
-                    x = (i * sh) + kh
-                    y = (j * sw) + kw
-
-                    M = A_prev[img, (i * sh):x, (j * sw):y, :]
-                    N = W[:, :, :, f]
-                    k = dZ[img, i, j, f] #int
-
-                    dW[:, :, :, f] += M *  k
-
-                    dA[img,(i * sh):x, (j * sw):y, :] += N * k
-
-    #dA = dA[:, ph:dA.shape[1]-ph, pw:dA.shape[2]-pw,: ]
-
-    return dW , db , dA
+    return dx, dW, db
