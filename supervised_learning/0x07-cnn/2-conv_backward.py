@@ -42,6 +42,6 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
 
                     dA[img,(i * sh):x, (j * sw):y, :] += N * k
 
-    dA = dA[:, ph:h_prev, pw:w_prev,: ]
+    dA = dA[:, ph:dA.shape[1]-ph, pw:dA.shape[2]-pw,: ]
 
     return dW , db , dA
