@@ -17,7 +17,7 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
        ph = int((((h - 1) * sh + kh - h_prev) / 2) + (kh % 2 == 0))
        pw = int((((w - 1) * sw + kw - w_prev) / 2) + (kh % 2 == 0))
 
-    A_prev = np.pad(A_prev, pad_width=((0, 0),(ph, ph),(pw, pw),(0, 0)), mode='constant', constant_values=0)
+    #A_prev = np.pad(A_prev, pad_width=((0, 0),(ph, ph),(pw, pw),(0, 0)), mode='constant', constant_values=0)
 
     dW = np.zeros(W.shape)
     db = np.sum(dZ,axis=(0,1,2),keepdims=True)
@@ -42,6 +42,6 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
 
                     dA[img,(i * sh):x, (j * sw):y, :] += N * k
 
-    dA = dA[:, ph:dA.shape[1]-ph, pw:dA.shape[2]-pw,: ]
+    #dA = dA[:, ph:dA.shape[1]-ph, pw:dA.shape[2]-pw,: ]
 
     return dW , db , dA
