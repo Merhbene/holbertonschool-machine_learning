@@ -11,10 +11,9 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     sh, sw = stride
     ph = pw = 0
 
-
     if padding == 'same':
-       ph = int((((h_prev - 1) * sh + kh - h_prev) / 2) + 1)
-       pw = int((((w_prev - 1) * sw + kw - w_prev) / 2) + 1)
+         ph = int((((h_prev - 1) * sh + kh - h_prev) / 2) + 1)
+         pw = int((((w_prev - 1) * sw + kw - w_prev) / 2) + 1)
 
     A_prev = np.pad(A_prev, pad_width=((0, 0),
                     (ph, ph), (pw, pw), (0, 0)),
@@ -31,7 +30,7 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                 for f in range(c_new):
 
                     filter = W[:, :, :, f]
-                    dz = dZ[img, h, w, f] # int
+                    dz = dZ[img, h, w, f]  # int
                     slice_A = A_prev[img, h*sh:h*sh+kh, w*sw:w*sw+kw, :]
 
                     dA[img, h*sh:h*sh+kh, w*sw:w*sw+kw, :] += dz * filter
