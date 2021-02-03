@@ -4,7 +4,8 @@ import numpy as np
 
 
 def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
-
+    """that perform back propagation over a convolutional
+    layer of a neural network"""
     m, h_new, w_new, c_new = dZ.shape
     m, h_prev, w_prev, c_prev = A_prev.shape
     kh, kw, c_prev, c_new = W.shape
@@ -12,8 +13,8 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     ph = pw = 0
 
     if padding == 'same':
-        ph = int((((h_prev - 1) * sh + kh - h_prev) / 2) + 1)  # + (kh % 2 == 0)
-        pw = int((((w_prev - 1) * sw + kw - w_prev) / 2) +1)  # + (kh % 2 == 0)
+        ph = int((((h_prev - 1) * sh + kh - h_prev) / 2) + 1)  # +(kh % 2 == 0)
+        pw = int((((w_prev - 1) * sw + kw - w_prev) / 2) + 1)
 
     A_prev = np.pad(A_prev, pad_width=((0, 0),
                     (ph, ph), (pw, pw), (0, 0)),
