@@ -3,37 +3,59 @@ import numpy as np
 
 
 def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
+
     m, h_new, w_new, c_new = dZ.shape
-    _, h_prev, w_prev, c_prev = A_prev.shape
-    kh, kw, _, _ = W.shape
-    sh, sw = stride
-    ph = 0
-    pw = 0
+    m, h_prev, w_prev, c_prev = A_prev.shape
+    kh, kw, c_prev, c_new = W.shape
 
-    db = np.sum(dZ, axis=(0, 1, 2), keepdims=True)
 
-    if padding == 'same':
-       ph = int((((h_prev - 1) * sh + kh - h_prev) / 2) + 1)
-       pw = int((((w_prev - 1) * sw + kw - w_prev) / 2) + 1)
+    sh, sw = stride[0], stride[1]
 
-    A_prev = np.pad(A_prev, pad_width=((0, 0),
-                    (ph, ph), (pw, pw), (0, 0)),
-                    mode='constant', constant_values=0)
+    if padding == 'valid':
+       ph = pw = 0
 
-    dW = np.zeros_like(W)
-    dx = np.zeros_like(A_prev)
-    for m_i in range(m):
-        for h in range(h_new):
-            for w in range(w_new):
-                for f in range(c_new):
-                    tmp_W = W[:, :, :, f]
+    else:
+       ph = int((((h_prev - 1) * sh + kh - h_prev) / 2) + (kh % 2 == 0))
+       pw = int((((w_prev - 1) * sw + kw - w_prev) / 2) + (kh % 2 == 0))
 
-                    tmp_dz = dZ[m_i, h, w, f]
-                    dx[m_i, h*sh:h*sh+kh, w*sw:w*sw+kw, :] += tmp_dz * tmp_W
+    A_prev = np.pad(A_prev, pad_width=((0, 0),(ph, ph),(pw, pw),(0, 0)), mode='constant', constant_values=0)
 
-                    tmp_A_prev = A_prev[m_i, h*sh:h*sh+kh, w*sw:w*sw+kw, :]
-                    dW[:, :, :, f] += tmp_A_prev * tmp_dz
 
-    dx = dx[:, ph:dx.shape[1]-ph, pw:dx.shape[2]-pw, :]
+    dW = np.zeros(W.shape)
+    db = np.sum(dZ,axis=(0,1,2),keepdims=True)
+    dA = np.zeros(A_prev.shape)
 
-    return dx, dW, db
+
+
+
+    for img in range(m):
+
+        for i in range(h_new):
+            for j in range(w_new):
+              for f in range(c_new):
+                
+
+                    x = (i * sh) + kh
+                    y = (j * sw) + kw
+
+                    M = A_prev[img, (i * sh):x, (j * sw):y, :]
+                    N = W[:, :, :, f]
+                    k = dZ[img, i, j, f] #int
+
+
+                    
+                    dW[:, :, :, f] += k * M
+
+                    dA[img,(i * sh):x, (j * sw):y, :] += k * N
+
+
+    dA = dA[:, ph:dA.shape[1]-ph, pw:dA.shape[2]-pw,: ]
+
+
+
+
+
+
+
+
+    return dW , db , dA
