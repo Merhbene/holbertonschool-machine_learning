@@ -30,12 +30,18 @@ def lenet5(x, y):
     layer6 = tf.layers.Dense(84, activation='relu',
                              kernel_initializer=init)(layer5)
 
-    y_pred = tf.layers.Dense(10, activation='softmax',
-                             kernel_initializer=init)(layer6)
+    out = tf.layers.Dense(units=10,
+                          kernel_initializer=init)(layer6)
 
-    loss = tf.losses.softmax_cross_entropy(y, y_pred)
-    grady = tf.train.AdamOptimizer()
-    op = grady.minimize(loss)
-    acc = tf.equal(tf.argmax(y, 1), tf.argmax(y_pred, 1))
-    accuracy = tf.reduce_mean(tf.cast(acc, tf.float32), name="Mean")
-    return y_pred, op, loss, accuracy
+    loss = tf.losses.softmax_cross_entropy(y, out)
+
+    out_softmax = tf.nn.softmax(out)
+
+    optimizer = tf.train.AdamOptimizer().minimize(loss)
+
+    pred = tf.argmax(y, 1)
+    val = tf.argmax(out, 1)
+    equality = tf.equal(pred, val)
+    accuracy = tf.reduce_mean(tf.cast(equality, tf.float32))
+
+    return out_softmax, optimizer, loss, accuracy
