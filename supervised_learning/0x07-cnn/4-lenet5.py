@@ -1,51 +1,41 @@
 #!/usr/bin/env python3
-""" LeNet-5 (Tensorflow) """
+"""
+    Convolutional Neural Networks
+"""
 import tensorflow as tf
 
 
 def lenet5(x, y):
-
+    """ Builds modified LeNet-5 using tensorflow
+    """
     init = tf.contrib.layers.variance_scaling_initializer()
-    layer_conv1 = tf.layers.Conv2D(filters=6,
-                                   kernel_size=5,
-                                   padding="same",
-                                   kernel_initializer=init,
-                                   activation=tf.nn.relu)(x)
 
-    layer_pool1 = tf.layers.MaxPooling2D(pool_size=[2, 2],
-                                         strides=2)(layer_conv1)
+    layer1 = tf.layers.Conv2D(filters=6, kernel_size=(5, 5),
+                              padding='same', activation='relu',
+                              kernel_initializer=init)(x)
 
-    layer_conv2 = tf.layers.Conv2D(filters=16,
-                                   kernel_size=5,
-                                   padding="valid",
-                                   kernel_initializer=init,
-                                   activation=tf.nn.relu)(layer_pool1)
+    layer2 = tf.layers.MaxPooling2D((2, 2), strides=(2, 2))(layer1)
 
-    layer_pool2 = tf.layers.MaxPooling2D(pool_size=[2, 2],
-                                         strides=2)(layer_conv2)
+    layer3 = tf.layers.Conv2D(filters=16, kernel_size=(5, 5),
+                              padding='valid', activation='relu',
+                              kernel_initializer=init)(layer2)
 
-    layer_flat1 = tf.layers.Flatten()(layer_pool2)
+    layer4 = tf.layers.MaxPooling2D(pool_size=(2, 2), strides=(2, 2))(layer3)
 
-    layer_fully1 = tf.layers.Dense(units=120,
-                                   activation=tf.nn.relu,
-                                   kernel_initializer=init)(layer_flat1)
+    flat = tf.layers.Flatten()(layer4)
 
-    layer_fully2 = tf.layers.Dense(units=84,
-                                   activation=tf.nn.relu,
-                                   kernel_initializer=init)(layer_fully1)
+    layer5 = tf.layers.Dense(120, activation='relu',
+                             kernel_initializer=init)(flat)
 
-    out = tf.layers.Dense(units=10,
-                          kernel_initializer=init)(layer_fully2)
+    layer6 = tf.layers.Dense(84, activation='relu',
+                             kernel_initializer=init)(layer5)
 
-    loss = tf.losses.softmax_cross_entropy(y, out)
+    y_pred = tf.layers.Dense(10, activation='softmax',
+                             kernel_initializer=init)(layer6)
 
-    out_softmax = tf.nn.softmax(out)
-
-    optimizer = tf.train.AdamOptimizer().minimize(loss)
-
-    pred = tf.argmax(y, 1)
-    val = tf.argmax(out, 1)
-    equality = tf.equal(pred, val)
-    accuracy = tf.reduce_mean(tf.cast(equality, tf.float32))
-
-    return out_softmax, optimizer, loss, accuracy
+    loss = tf.losses.softmax_cross_entropy(y, y_pred)
+    grady = tf.train.AdamOptimizer()
+    op = grady.minimize(loss)
+    acc = tf.equal(tf.argmax(y, 1), tf.argmax(y_pred, 1))
+    accuracy = tf.reduce_mean(tf.cast(acc, tf.float32), name="Mean")
+    return y_pred, op, loss, accuracy
