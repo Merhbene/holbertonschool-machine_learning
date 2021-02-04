@@ -26,7 +26,7 @@ def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
     outputs = np.zeros(output_dim)
 
     padded_images = np.pad(A_prev, pad_width=((0, 0), (ph, ph),
-                                              (pw, pw),(0, 0)),
+                                             (pw, pw), (0, 0)),
                            mode='constant', constant_values=0)
 
     for i in range(oh):
