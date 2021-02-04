@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import numpy as np
+"new function"
 
 
 def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
+    "perform forward propagation over a convolutional layer of a neural network"
     m, h_prev, w_prev, c_prev = A_prev.shape
     kh, kw, c_prev, c_new = W.shape
 
