@@ -13,23 +13,20 @@ class Yolo:
         self.anchors = anchors
 
     def process_outputs(self, outputs, image_size):
-        grid_height, grid_width, anchor_boxes, classes = outputs[0].shape
-        classes = classes - 5
         image_height, image_width = image_size[0], image_size[1]
 
-        dim1 = (grid_height, grid_width, anchor_boxes, 4) 
         boxes = []
-
-        dim2 = (grid_height, grid_width, anchor_boxes, 1)
+        box_class_probs = []
         box_confidences = []
 
-        dim3 = (grid_height, grid_width, anchor_boxes, classes)
-        box_class_probs = []
-
         for i in range(len(outputs)) :
-            output = outputs[i]
-            box = np.zeros(dim1)
 
+            output = outputs[i]
+            grid_height, grid_width, anchor_boxes, classes = output.shape
+            classes = classes - 5
+
+            dim1 = (grid_height, grid_width, anchor_boxes, 4) 
+            box = np.zeros(dim1)
             box_conf = output[:,:, :,4]
             box_conf = (1 / (1 + np.exp(-box_conf))) #segmoid
             box_conf = np.expand_dims(box_conf, axis=3) 
@@ -61,8 +58,8 @@ class Yolo:
                     bw = bw / self.model.input.shape[1].value
                     bh = bh / self.model.input.shape[2].value
 
-                    x1 = bx - bw/2
-                    y1 = by - bh/2
+                    x1 = bx - bw / 2
+                    y1 = by - bh / 2
 
                     x2 = bx + bw / 2
                     y2 = by + bh / 2
@@ -77,4 +74,3 @@ class Yolo:
             box_class_probs.append(box_class_p)
 
         return (boxes, box_confidences, box_class_probs)
-
