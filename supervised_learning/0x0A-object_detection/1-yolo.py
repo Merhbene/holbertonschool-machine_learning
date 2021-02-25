@@ -37,19 +37,12 @@ class Yolo:
             box_class_p = output[:,:, :,5:]
             box_class_p = (1 / (1 + np.exp(-box_class_p))) #segmoid
 
-            #j = i + 1 #for the scale dim
-            #scale_dim = 13 * j
-
-
-            #cx = [i for i in range(grid_height)]
-            #cy = [i for i in range(grid_width)]
-
             pw = self.anchors[i,:,0] # anchor_box_width
             ph = self.anchors[i,:,1] # anchor_box_height
             # loop over cells
             for x in range(grid_height) : # x= cx , y=cy
                 for y in range (grid_width):
-      
+
                     # Center coordinates, width and height of the output
                     tx = output[y,x,:,0] 
                     ty = output[y,x,:,1] 
@@ -59,11 +52,8 @@ class Yolo:
                     bx = (1 / (1 + np.exp(-tx))) + x
                     by = (1 / (1 + np.exp(-ty))) + y
 
-
                     bw = pw * np.exp(tw)
                     bh = ph * np.exp(th)
-    
-
 
                     # Normalizing
                     bx = bx / grid_width
@@ -74,23 +64,17 @@ class Yolo:
                     x1 = bx - bw/2
                     y1 = by - bh/2
 
-                    x2 = bx + bw/2
-                    y2 = by + bh/2
+                    x2 = bx + bw / 2
+                    y2 = by + bh / 2
 
-                    #print(box[y,x,:,0].shape, x1.shape,bx.shape ,x1.shape)
                     box[y,x,:,0] = x1 * image_width
                     box[y,x,:,1] = y1 * image_height
                     box[y,x,:,2] = x2 * image_width
                     box[y,x,:,3] = y2 * image_height
 
-
-
             boxes.append(box)
             box_confidences.append(box_conf)
             box_class_probs.append(box_class_p)
 
-
-
-
-
         return (boxes, box_confidences, box_class_probs)
+
