@@ -63,7 +63,6 @@ class Yolo:
                     bw = pw * np.exp(tw)
                     bh = ph * np.exp(th)
     
-                    print(pw.shape, tx.shape)
 
 
                     # Normalizing
