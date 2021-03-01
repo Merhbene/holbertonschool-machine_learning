@@ -18,7 +18,7 @@ class NST:
 
     def __init__(self, style_image, content_image, alpha=1e4, beta=1):
 
-        #tf.enable_eager_execution()
+        tf.enable_eager_execution()
 
         if type(style_image) != np.ndarray or style_image.ndim != 3 or style_image.shape[2] != 3:
             raise TypeError ("style_image must be a numpy.ndarray with shape (h, w, 3)")
