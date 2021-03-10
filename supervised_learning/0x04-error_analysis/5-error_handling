@@ -1,0 +1,13 @@
+1. High Bias, High Variance:  Train more 
+                              Try a different architecture 
+                              Build a deeper network
+                              
+2. High Bias, Low Variance: Train more
+                            Try a different architecture
+                            Build a deeper network
+                            
+3. Low Bias, High Variance: Try a different architecture 
+                            Get more data 
+                            Use regularization
+                            
+4. Low Bias, Low Variance:  All good, do nothing
