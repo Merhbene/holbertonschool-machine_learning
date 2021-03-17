@@ -8,7 +8,7 @@ def rnn(rnn_cell, X, h_0):
     H = [h_0]
     Y = []
     for step in range(t):
-          h, y = rnn_cell.forward(h_0, X[step])
+          h, y = rnn_cell.forward(H[-1], X[step])
           H.append(h)
           Y.append(y)
     return np.array(H), np.array(Y)
