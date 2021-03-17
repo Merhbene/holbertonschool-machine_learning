@@ -4,7 +4,7 @@ import numpy as np
 
 
 class RNNCell:
-    """"represent a cell of a simple RNN"""
+    """represent a cell of a simple RNN"""
     def __init__(self, i, h, o):
         """
         i is the dimensionality of the data
@@ -27,7 +27,7 @@ class RNNCell:
         m, i = x_t.shape
         m, h = h_prev.shape
         s = np.matmul(h_prev, self.Wh[:h]) + np.matmul(x_t, self.Wh[-i:]) + self.bh
-        # s = np.matmul(np.concatenate([h_prev, x_t], axis=1), self.Wh)+ self.bh
+        # or s = np.matmul(np.concatenate([h_prev, x_t], axis=1), self.Wh)+ self.bh
         s = np.tanh(s)
 
         y = np.matmul(s, self.Wy) + self.by
