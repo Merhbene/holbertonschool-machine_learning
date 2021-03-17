@@ -4,7 +4,7 @@ import numpy as np
 
 
 class RNNCell:
-    "represent a cell of a simple RNN"
+    """"represent a cell of a simple RNN"""
     def __init__(self, i, h, o):
         """
         i is the dimensionality of the data
