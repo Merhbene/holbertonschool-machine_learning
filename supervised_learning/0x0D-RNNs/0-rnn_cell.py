@@ -4,6 +4,7 @@ import numpy as np
 
 
 class RNNCell:
+    "represent a cell of a simple RNN"
     def __init__(self, i, h, o):
         """
         i is the dimensionality of the data
@@ -14,12 +15,12 @@ class RNNCell:
         """
         self.Wh = np.random.randn(h + i, h)
         self.Wy = np.random.randn(h, o)
-        self.bh = np.zeros((1,h))
-        self.by = np.zeros((1,o))
+        self.bh = np.zeros((1, h))
+        self.by = np.zeros((1, o))
 
     def forward(self, h_prev, x_t):
         """
-        x_t is a numpy.ndarray of shape (m, i) that contains the data input for the cell 
+        x_t is a numpy.ndarray of shape (m, i) that contains the data input for the cell
         h_prev is a numpy.ndarray of shape (m, h) containing the previous hidden state
         m is the batche size for the data
         """
@@ -30,7 +31,7 @@ class RNNCell:
         s = np.tanh(s)
 
         y = np.matmul(s, self.Wy) + self.by
-        y = np.exp(y) 
-        y =  y / np.sum(y, axis=1, keepdims=True)
+        y = np.exp(y)
+        y = y / np.sum(y, axis=1, keepdims=True)
 
         return s, y
