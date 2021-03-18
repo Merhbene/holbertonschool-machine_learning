@@ -2,26 +2,18 @@
 import numpy as np
 
 
-def rnn(rnn_cell, X, h_0):
-    """Perform forward propagation for a simple RNN"""
-    t, _, _ = X.shape
-    H = [h_0]
-    Y = []
-    for step in range(t):
-          h, y = rnn_cell.forward(H[-1], X[step])
-          H.append(h)
-          Y.append(y)
-    return np.array(H), np.array(Y)
-
 def deep_rnn(rnn_cells, X, h_0):
     """Perform forward propagation for a deep RNN"""
     H = [h_0]
     Y = []
-    M = X
-    for i in range(len(rnn_cells)):
-          cell = rnn_cells[i]
-          h, y = rnn(cell, M, h_0[i])
-          H.append(h)
-          Y.append(y)
-          M = h
+    for xt in X:
+        ht = []
+        M = xt
+        for i in range len(rnn_cells):
+            h, y = rnn_cells[i].forward(H[-1][i], M)
+            ht.append(h)
+            M = h
+            if i == (len(rnn_cells)-1)
+                Y.append(y)
+        H.append(ht)
     return np.array(H), np.array(Y)
