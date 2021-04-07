@@ -2,7 +2,7 @@
 import tensorflow.keras as keras
 
 
-def autoencoder(input_dims, hidden_layers, latent_dims): 
+def autoencoder(input_dims, hidden_layers, latent_dims):
     """ creates an autoencoder """
     "Encoder model"
     Input = keras.layers.Input(shape=(input_dims,))
@@ -27,4 +27,4 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     auto.compile(optimizer='adam', loss='binary_crossentropy')
 
     return encoder, decoder, auto
-  
+ 
