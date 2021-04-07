@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import tensorflow.keras as keras
 """ creates an autoencoder """
+import tensorflow.keras as keras
 
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
@@ -27,4 +27,3 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     auto.compile(optimizer='adam', loss='binary_crossentropy')
 
     return encoder, decoder, auto
- 
