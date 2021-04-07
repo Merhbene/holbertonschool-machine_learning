@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import tensorflow.keras as keras
+""" creates an autoencoder """
 
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
-    """ creates an autoencoder """
     "Encoder model"
     Input = keras.layers.Input(shape=(input_dims,))
     x = Input
