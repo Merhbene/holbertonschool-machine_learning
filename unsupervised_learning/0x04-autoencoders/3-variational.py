@@ -68,7 +68,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
             keras.backend.exp(z_log_sigma)
         kl_loss = keras.backend.sum(kl_loss, axis=-1)
         kl_loss *= -0.5
-        return keras.backend.mean(reconstruction_loss + kl_loss)
+        return reconstruction_loss + kl_loss
 
     vae = keras.Model(inputs, outputs)
     vae.compile(optimizer="Adam", loss=vae_loss)
