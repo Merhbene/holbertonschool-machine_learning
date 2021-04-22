@@ -19,15 +19,14 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     z_mean = keras.layers.Dense(latent_dims)(h)
     z_log_sigma = keras.layers.Dense(latent_dims)(h)
 
+
     def sampling(args):
         z_mean, z_log_sigma = args
-        epsilon = keras.backend.random_normal(
-            shape=(keras.backend.shape(z_mean)[0], latent_dims),
-            mean=0.,
-            stddev=0.1
-        )
-        return z_mean + keras.backend.exp(z_log_sigma) * epsilon
-
+        m = keras.backend.shape(z_mean)[0]
+        n = keras.backend.int_shape(z_mean)[1]
+        epsilon = keras.backend.random_normal(shape=(m, n), mean=0., stddev=1.)
+        return z_mean + keras.backend.exp(z_log_sigma / 2) * epsilon
+    
     z = keras.layers.Lambda(sampling)([z_mean, z_log_sigma])
     encoder = keras.Model(inputs, [z_mean, z_log_sigma, z])
 
