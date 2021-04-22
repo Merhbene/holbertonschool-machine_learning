@@ -4,14 +4,7 @@ import tensorflow.keras as keras
 
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
-    """Creates a variational autoencoder
-    Arguments:
-        input_dims {int} -- Is the input size
-        hidden_layers {list} -- Contain the number of nodes for each layer
-        latent_dims {int} -- The size of latent space
-    Returns:
-        tupe -- encoder, decoder, and autoencoder model
-    """
+
     inputs = keras.Input(shape=(input_dims,))
     h = keras.layers.Dense(hidden_layers[0], activation='relu')(inputs)
     for dim in hidden_layers[1:]:
@@ -24,8 +17,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
         epsilon = keras.backend.random_normal(
             shape=(keras.backend.shape(z_mean)[0], latent_dims),
             mean=0.,
-            stddev=0.1,
-            seed=0
+            stddev=0.1
         )
         return z_mean + keras.backend.exp(z_log_sigma) * epsilon
 
@@ -49,6 +41,8 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
         kl_loss = keras.backend.sum(kl_loss, axis=1)
         kl_loss *= -0.5
         return reconstruction_loss + kl_loss
+
+
 
     auto.compile(optimizer='adam', loss=vae_loss)
 
