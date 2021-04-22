@@ -1,44 +1,37 @@
 #!/usr/bin/env python3
-"""Autoencoder module"""
+
 import tensorflow.keras as keras
 
-
 def autoencoder(input_dims, hidden_layers, latent_dims):
-
-    inputs = keras.Input(shape=(input_dims,))
-    h = keras.layers.Dense(hidden_layers[0], activation='relu')(inputs)
-    for dim in hidden_layers[1:]:
-        h = keras.layers.Dense(dim, activation='relu')(h)
-    z_mean = keras.layers.Dense(latent_dims)(h)
-    z_log_sigma = keras.layers.Dense(latent_dims)(h)
-
-    def sampling(args):
-        z_mean, z_log_sigma = args
-        epsilon = keras.backend.random_normal(
-            shape=(keras.backend.shape(z_mean)[0], latent_dims),
-            mean=0.,
-            stddev=0.1
-        )
-        return z_mean + keras.backend.exp(z_log_sigma) * epsilon
-
-    z = keras.layers.Lambda(sampling)([z_mean, z_log_sigma])
-    encoder = keras.Model(inputs, [z_mean, z_log_sigma, z])
-
-    latent_inputs = keras.Input(shape=(latent_dims,))
-    x = keras.layers.Dense(hidden_layers[-1], activation='relu')(latent_inputs)
-    for dim in hidden_layers[-2::-1]:
-        x = keras.layers.Dense(dim, activation='relu')(x)
-    decoded_outputs = keras.layers.Dense(input_dims, activation='sigmoid')(x)
-    decoder = keras.Model(latent_inputs, decoded_outputs)
-    outputs = decoder(encoder(inputs)[2])
-    auto = keras.Model(inputs, outputs)
-
-
-    def total_loss(inputs, outputs):
+    if hidden_layers is None:
+        hidden_layers = []
+    
+    Ei = keras.layers.Input(shape=(input_dims,))
+    X = Ei
+    for l in hidden_layers:
+        X = keras.layers.Dense(l, activation='relu')(X)
+    mu = keras.layers.Dense(latent_dims)(X)
+    log_sig = keras.layers.Dense(latent_dims)(X)
+    def sample_z(args):
+        _mu, _log_sig = args
+        m = keras.backend.shape(_mu)[0]
+        n = keras.backend.int_shape(_mu)[1]
+        epsilon = keras.backend.random_normal(shape=(m, n), mean=0., stddev=1.)
+        return _mu + keras.backend.exp(log_sig / 2) * epsilon
+    Eo = keras.layers.Lambda(sample_z)([mu, log_sig])
+    encoder = keras.Model(inputs=Ei, outputs=[Eo, mu, log_sig])
+    Di = keras.layers.Input(shape=(latent_dims,))
+    X = Di
+    for l in reversed(hidden_layers):
+        X = keras.layers.Dense(l, activation='relu')(X)
+    Do = keras.layers.Dense(input_dims, activation='sigmoid')(X)
+    decoder = keras.Model(inputs=Di, outputs=Do)
+    auto = keras.Model(inputs=Ei, outputs=decoder(encoder(Ei)[0]))
+    def total_loss(x, x_decoded):
         content_loss = keras.backend.sum(keras.backend.binary_crossentropy(x, x_decoded), axis=1)
-        kl_loss = 0.5 * keras.backend.sum(keras.backend.exp(z_log_sigma) + keras.backend.square(z_mean) - 1 - z_log_sigma, axis=1)
+        kl_loss = 0.5 * keras.backend.sum(keras.backend.exp(log_sig) + keras.backend.square(mu) - 1 - log_sig, axis=1)
         return content_loss + kl_loss
-
+    
     auto.compile(optimizer='adam', loss=total_loss)
 
     return encoder, decoder, auto
