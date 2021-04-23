@@ -9,7 +9,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims, lambtha):
     x = input 
     for layer in hidden_layers:
         x = keras.layers.Dense(layer,activation='relu')(x)
-    output = keras.layers.Dense(latent_dims,activation='relu', activity_regularizer=tf.keras.regularizers.l1(lambtha))(x)
+    output = keras.layers.Dense(latent_dims,activation='relu', activity_regularizer=keras.regularizers.l1(lambtha))(x)
 
     encoder = keras.Model(input,output)
     
