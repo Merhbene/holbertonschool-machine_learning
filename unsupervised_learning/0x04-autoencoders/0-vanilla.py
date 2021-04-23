@@ -5,7 +5,7 @@ import tensorflow.keras as keras
 
 def autoencoder(input_dims, hidden_layers, latent_dims):
     "Encoder"
-    input = tf.keras.layers.Input(shape=(input_dims))
+    input = tf.keras.layers.Input(shape=(input_dims,))
     x = input 
     for layer in hidden_layers:
         x = tf.keras.layers.Dense(layer,activation='relu')(x)
@@ -14,7 +14,7 @@ def autoencoder(input_dims, hidden_layers, latent_dims):
     encoder = tf.keras.Model(input,output)
     
     "decoder"
-    input2 = tf.keras.layers.Input(shape=(latent_dims))
+    input2 = tf.keras.layers.Input(shape=(latent_dims,))
     x = input2
     for layer in reversed(hidden_layers):
         x = tf.keras.layers.Dense(layer, activation='relu')(x)
