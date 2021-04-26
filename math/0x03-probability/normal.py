@@ -7,7 +7,7 @@ class Normal():
         " normal distribution"
 
         if data is None:
-            if stddev >= 0:
+            if stddev <= 0:
                 raise ValueError("stddev must be a positive value")
             self.mean = float(mean)
             self.stddev = float(stddev)
