@@ -8,9 +8,6 @@ def factorial(x):
     for i in range(1, x + 1):
         f *= i
     return f
-
-
-
 class Poisson():
     "poisson distribution"
     def __init__(self, data=None, lambtha=1.):
