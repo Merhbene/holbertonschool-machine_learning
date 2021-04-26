@@ -18,3 +18,14 @@ class Exponential():
 
             # Calculate the lambtha of data
             self.lambtha = len(data) / sum(data)
+
+    # Probability density function
+    def pdf(self, x):
+        "Calculates the value of the PDF for a given time period "
+        if x < 0:
+            return 0
+
+        e = 2.7182818285
+
+        pdf = self.lambtha * (e ** (- self.lambtha * x))
+        return pdf
