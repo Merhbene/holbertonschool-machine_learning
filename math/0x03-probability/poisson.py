@@ -11,12 +11,12 @@ class Poisson():
                 raise ValueError("lambtha must be a positive value")
          
         if data:
-            L=0
-            for i in data:
-                L = L+i
-            self.lambtha = L / len(data)
             #Calculate the lambtha of data
             if type(data) is not list:
                 raise TypeError("data must be a list")
             if len(data)<2 :
                 raise ValueError("data must contain multiple values")   
+            L=0
+            for i in data:
+                L = L+i
+            self.lambtha = L / len(data)
