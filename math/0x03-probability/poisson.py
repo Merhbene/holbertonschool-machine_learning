@@ -3,17 +3,20 @@
 
 
 def factorial(x):
+    "factorial"
     f = 1
     for i in range(1, x + 1):
         f *= i
     return f
+
+
 
 class Poisson():
     "poisson distribution"
     def __init__(self, data=None, lambtha=1.):
 
         if data is None:
-            self.lambtha = float (lambtha)
+            self.lambtha = float(lambtha)
             if (lambtha <= 0):
                 raise ValueError("lambtha must be a positive value")
 
@@ -31,7 +34,7 @@ class Poisson():
     # probability mass function
     def pmf(self, k):
         "Calculates the value of the PMF for a given number of “successes” "
-        k = int (k)
+        k = int(k)
         if k < 0:
             return 0
         e = 2.7182818285
