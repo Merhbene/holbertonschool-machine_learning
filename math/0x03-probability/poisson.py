@@ -32,3 +32,21 @@ class Poisson():
             fact_k *= i
         P = ((self.lambtha ** k) * (e ** (- self.lambtha))) / fact_k
         return P
+
+    # cumulative distribution function
+    def cdf(self, k):
+        "Calculates the value of the CDF for a given number of “successes” "
+        k = int(k)
+        if k < 0:
+            return 0
+
+        e = 2.7182818285
+        cdf = 0
+        for i in range(k+1):
+
+            fact_i = 1
+            for j in range(1, i + 1):
+                fact_i *= j
+
+            cdf += ((self.lambtha ** i) * (e ** (- self.lambtha))) / fact_i
+        return cdf
