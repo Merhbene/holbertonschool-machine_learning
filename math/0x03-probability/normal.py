@@ -24,3 +24,8 @@ class Normal():
         "Calculates the z-score of a given x-value"
         z = (x - self.mean) / self.stddev
         return z
+
+    def x_value(self, z):
+        "Calculates the x-value of a given z-score"
+        x = z * self.stddev + self.mean
+        return x
