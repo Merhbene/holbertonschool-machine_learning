@@ -25,3 +25,25 @@ class Binomial():
             p = 1 - (var / mean)
             self.n = round(mean / p)
             self.p = mean / self.n
+
+    # factorial
+    def fact(self, x):
+        f = 1
+        for i in range(1, x + 1):
+            f *= i
+        return f
+
+    # probability mass function
+    def pmf(self, k):
+        "Calculates the value of the PMF for a given number of “successes” "
+        a = self.n - k
+        c = self.fact(self.n) / (self.fact(k) * self.fact(a))
+        pmf = c * (self.p ** k) * (1 - self.p) ** a
+        return pmf
+
+    # cumulative distribution function
+    def cdf(self, k):
+        "Calculates the value of the CDF for a given number of “successes” "
+        k = int(k)
+        L = [self.pmf(i) for i in range(k + 1)]
+        return sum(L)
