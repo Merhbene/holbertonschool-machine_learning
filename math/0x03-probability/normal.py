@@ -35,7 +35,7 @@ class Normal():
         pi = 3.1415926536
         e = 2.7182818285
         c = self.stddev * ((2*pi) ** (1/2))
-        pdf = (e ** ( - (self.z_score(x) ** 2) / 2)) / c
+        pdf = (e ** (- (self.z_score(x) ** 2) / 2)) / c
         return pdf
 
     def erf(self, x):
