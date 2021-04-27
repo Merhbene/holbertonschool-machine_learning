@@ -35,5 +35,18 @@ class Normal():
         pi = 3.1415926536
         e = 2.7182818285
         c = self.stddev * ((2*pi) ** (1/2))
-        pdf = (e ** (- (self.z_score(x) ** 2) / 2)) / c
+        pdf = (e ** ( - (self.z_score(x) ** 2) / 2)) / c
         return pdf
+
+    def erf(self, x):
+        "error function"
+        pi = 3.1415926536
+        c = (x - (x ** 3) / 3 + (x ** 5) / 10 - (x ** 7) / 42 + (x ** 9) / 216)
+        return 2 * c / (pi ** (1 / 2))
+
+    # cumulative distribution function
+    def cdf(self, x):
+        "Calculates the value of the CDF for a given x-value"
+        c = self.z_score(x) / (2 ** (1 / 2))
+        cdf = (1 + self.erf(c)) / 2
+        return cdf
