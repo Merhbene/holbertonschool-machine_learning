@@ -28,6 +28,7 @@ class Binomial():
 
     # factorial
     def fact(self, x):
+        "calculates the factorial of a value"
         f = 1
         for i in range(1, x + 1):
             f *= i
