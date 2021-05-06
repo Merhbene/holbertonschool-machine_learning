@@ -1,7 +1,9 @@
 NLP metrics : 
 
-BLEU score
 
-ROUGE score
 
-Perplexity
+° BLEU score
+
+° ROUGE score
+
+° Perplexity
