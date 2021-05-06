@@ -9,7 +9,7 @@ def uni_bleu(references, sentence):
     d = {s: sentence.count(s) for s in sentence}
     count = d.values()
 
-    L=[]
+    L = []
     for ref in references:
         d = {s: ref.count(s) for s in sentence}
         L.append(list(d.values()))
@@ -17,10 +17,10 @@ def uni_bleu(references, sentence):
     count_clip = cc.max(axis=0)
 
     p = sum(count_clip) / sum(count)
-    #print(sum(count_clip) , sum(count))
-    #print(count, count_clip)
+    # print(sum(count_clip) , sum(count))
+    # print(count, count_clip)
     c = len(sentence)
-    """ 
+    """
     r is taken to be the sum of the lengths of the sentences whose lengths
      are closest to the lengths of the candidate sentences
     """
@@ -28,7 +28,7 @@ def uni_bleu(references, sentence):
     r_ind = min(r_list)[1]
     r = len(references[r_ind])
 
-    """ 
+    """
     Method2
     r_list = np.array([np.abs(len(s)-c) for s in references])
     r_ind = np.argwhere(r_list == np.min(r_list))
@@ -39,6 +39,5 @@ def uni_bleu(references, sentence):
         BP = 1
     else:
         BP = np.exp(1 - (r / c))
-    #print(BP,p)
+    # print(BP,p)
     return BP * p
-    
