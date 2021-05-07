@@ -31,7 +31,7 @@ def cumulative_bleu(references, sentence, n):
 
     Bleu = 1
 
-    for i in range (1, n + 1):
+    for i in range(1, n + 1):
 
         sentence_i = ngram_list(sentence, i)
         references_i = [ngram_list(ref, i) for ref in references]
@@ -48,6 +48,6 @@ def cumulative_bleu(references, sentence, n):
 
         precision_i = sum(count_clip) / sum(count)
 
-        Bleu *= precision_i 
+        Bleu *= precision_i
 
     return BP * (Bleu ** (1 / n))
