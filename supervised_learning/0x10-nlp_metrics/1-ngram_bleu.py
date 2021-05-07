@@ -2,16 +2,18 @@
 "N-gram BLEU score"
 import numpy as np
 
+
 def ngram_list(L, n):
     "contiguous sequence of n items"
     c = len(L)
     M = []
     for i in range(c):
-        l = L[i : i + n]
+        l = L[i:i + n]
         if len(l) == n:
             listToStr = ' '.join(map(str, l))
             M.append(listToStr)
     return M
+
 
 def ngram_bleu(references, sentence, n):
     "calculates the n-gram BLEU score for a sentence"
