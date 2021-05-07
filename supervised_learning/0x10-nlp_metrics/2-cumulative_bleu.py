@@ -29,9 +29,9 @@ def cumulative_bleu(references, sentence, n):
 
     weights = [1 / n for i in range(n)]
 
-    Bleu = 1
+    Bleu = []
 
-    for i in range(1, n + 1):
+    for i in range (1, n + 1):
 
         sentence_i = ngram_list(sentence, i)
         references_i = [ngram_list(ref, i) for ref in references]
@@ -47,7 +47,10 @@ def cumulative_bleu(references, sentence, n):
         count_clip = cc.max(axis=0)
 
         precision_i = sum(count_clip) / sum(count)
+        
+        Bleu.append(precision_i)
 
-        Bleu *= precision_i
+    s = (w_i * np.log(p_i) for w_i, p_i in zip(weights, Bleu))
+    s = BP * np.exp(math.fsum(s))
 
-    return BP * (Bleu ** (1 / n))
+    return s
