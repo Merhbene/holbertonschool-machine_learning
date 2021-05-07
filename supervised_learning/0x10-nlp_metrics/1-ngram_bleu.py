@@ -3,6 +3,7 @@
 import numpy as np
 
 def ngram_list(L, n):
+    "contiguous sequence of n items"
     c = len(L)
     M = []
     for i in range(c):
@@ -19,11 +20,9 @@ def ngram_bleu(references, sentence, n):
     r_list = [(abs(len(r) - c), i) for i, r in enumerate(references)]
     r_ind = min(r_list)[1]
     r = len(references[r_ind])
-    #print("c=", c, "r=", r)
 
     sentence = ngram_list(sentence, n)
     references = [ngram_list(ref, n) for ref in references]
-    #print("sentence: ", sentence, "references: ", references)
 
     d = {s: sentence.count(s) for s in sentence}
     count = d.values()
@@ -36,12 +35,9 @@ def ngram_bleu(references, sentence, n):
     count_clip = cc.max(axis=0)
 
     p = sum(count_clip) / sum(count)
-    # print(sum(count_clip) , sum(count))
-    #print(count, count_clip)
 
     if c > r:
         BP = 1
     else:
         BP = np.exp(1 - (r / c))
-    # print(BP,p)
     return BP * p
