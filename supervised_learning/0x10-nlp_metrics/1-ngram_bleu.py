@@ -8,9 +8,9 @@ def ngram_list(L, n):
     c = len(L)
     M = []
     for i in range(c):
-        l = L[i:i + n]
-        if len(l) == n:
-            listToStr = ' '.join(map(str, l))
+        ngram = L[i:i + n]
+        if len(ngram) == n:
+            listToStr = ' '.join(map(str, ngram))
             M.append(listToStr)
     return M
 
