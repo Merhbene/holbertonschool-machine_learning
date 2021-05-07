@@ -51,6 +51,6 @@ def cumulative_bleu(references, sentence, n):
         Bleu.append(precision_i)
 
     s = (w_i * np.log(p_i) for w_i, p_i in zip(weights, Bleu))
-    s = BP * np.exp(math.fsum(s))
+    s = BP * np.exp(np.sum(s))
 
     return s
