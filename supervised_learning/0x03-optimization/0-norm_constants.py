@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Word Embeddings module"""
-
+import numpy as np
 
 def word2vec_model(
     sentences,
