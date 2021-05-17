@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Word Embeddings module"""
-from gensim.models import Word2Vec
 
 
 def word2vec_model(
