@@ -4,4 +4,4 @@ import numpy as np
 
 
 def normalize(X, m, s):
-    return (X-s) / m
+    return (X-m) / s
