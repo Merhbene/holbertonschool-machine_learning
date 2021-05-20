@@ -2,15 +2,15 @@
 Optimization techniques:
 
 
-        * Feature Scaling
+  * Feature Scaling
         
-        * Batch normalization
+  * Batch normalization
         
-        * Mini-batch gradient descent
+ * Mini-batch gradient descent
         
-        * Gradient descent with momentum
+  * Gradient descent with momentum
         
-        * RMSProp optimization
+  * RMSProp optimization
         
   * Adam optimization
         
