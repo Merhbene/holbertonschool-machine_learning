@@ -12,6 +12,6 @@ Optimization techniques:
         
         * RMSProp optimization
         
-        * Adam optimization
+  * Adam optimization
         
  * Learning rate decay
