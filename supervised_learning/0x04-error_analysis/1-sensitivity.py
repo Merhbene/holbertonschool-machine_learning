@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import numpy as np
-""" new function"""
+"""Sensitivity"""
 
 
 def sensitivity(confusion):
@@ -8,11 +8,10 @@ def sensitivity(confusion):
     Sensitivity measures the proportion of
     positives that are correctly identified
     """
-    classes = confusion.shape[0]
-    sensitivity = np.zeros((classes,))
-    for j in range(classes):
-        TP = confusion[j][j]
-        P = np.sum(confusion, axis=1)[j]
-        sensitivity[j] = TP / P
+  s = []
+  for i in range(len(confusion)):
+      TP = confusion[i][i]
+      P = np.sum(confusion[i])
+      s.append( TP / P)
 
-    return sensitivity
+    return np.array(s)
