@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import numpy as np
 """Sensitivity"""
+import numpy as np
 
 
 def sensitivity(confusion):
@@ -12,6 +12,6 @@ def sensitivity(confusion):
     for i in range(len(confusion)):
         TP = confusion[i][i]
         P = np.sum(confusion[i])
-        s.append( TP / P)
+        s.append(TP / P)
 
     return np.array(s)
