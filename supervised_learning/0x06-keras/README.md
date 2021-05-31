@@ -14,8 +14,9 @@
   * How to use validation data
    * How to perform early stopping
 *How to measure accuracy
-    *How to evaluate a model
-    *How to make a prediction with a model
-    *How to access the weights/outputs of a model
-    *What is HDF5?
-    *How to save and load a model’s weights, a model’s configuration, and the entire model
+
+  *How to evaluate a model
+  *How to make a prediction with a model
+  *How to access the weights/outputs of a model
+  *What is HDF5?
+  *How to save and load a model’s weights, a model’s configuration, and the entire model
