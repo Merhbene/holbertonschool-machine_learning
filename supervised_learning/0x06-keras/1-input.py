@@ -13,6 +13,6 @@ def build_model(nx, layers, activations, lambtha, keep_prob):
         layer = k.layers.Dropout(rate=1-keep_prob)(layer)# Fraction of the input units to drop
         layer = k.layers.Dense(layers[i], activation=activations[i], kernel_regularizer=reg)(layer)
 
-    model = k.Model(inputs= inpt, outputs=layer)
+    model = k.Model(inputs=inpt, outputs=layer)
 
     return model
