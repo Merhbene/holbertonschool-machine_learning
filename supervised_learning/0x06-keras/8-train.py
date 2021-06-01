@@ -15,7 +15,8 @@ def train_model(network, data, labels, batch_size,
     if validation_data is not None:
         if early_stopping:
             early = K.callbacks.EarlyStopping(monitor='val_loss',
-                                              patience=patience)
+                                              patience=patience,
+                                              mode='min')
             cb.append(early)
         if learning_rate_decay:
             def decayed_lr(step):
@@ -24,12 +25,10 @@ def train_model(network, data, labels, batch_size,
             learn = K.callbacks.LearningRateScheduler(schedule=decayed_lr,
                                                       verbose=True)
             cb.append(learn)
-
         if save_best:
             saver = K.callbacks.ModelCheckpoint(filepath, save_best_only=True)
             cb.append(saver)
-
-    history = network.fit(data, labels, epochs=epochs,
+    history = network.fit(data, labels, epochs=2,
                           batch_size=batch_size,
                           callbacks=cb,
                           validation_data=validation_data,
