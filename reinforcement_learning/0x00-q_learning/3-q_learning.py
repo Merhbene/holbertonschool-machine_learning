@@ -24,6 +24,10 @@ def train(env, Q, episodes=5000, max_steps=100, alpha=0.1, gamma=0.99, epsilon=1
 
               new_state, reward, done, info = env.step(action)
 
+              # Checking if I fell in a hole
+              if done and reward == 0 :
+                  reward = -1 
+
               # update  Q-table for Q(s, a)
               Q[state, action] = Q[state, action] * (1 - alpha) + alpha * (reward + gamma * np.max(Q[new_state, :]))
 
