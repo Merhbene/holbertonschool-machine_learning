@@ -39,7 +39,7 @@ def train(env, Q, episodes=5000, max_steps=100, alpha=0.1, gamma=0.99, epsilon=1
 
           # exploration rate decay 
           epsilon = min_epsilon + (max_epsilon -  min_epsilon) * np.exp(- epsilon_decay * episode)
-          
+
           total_rewards.append(rewards_current_episode)
-          
+
       return Q, total_rewards
