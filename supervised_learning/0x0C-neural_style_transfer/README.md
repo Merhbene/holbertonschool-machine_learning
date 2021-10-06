@@ -12,9 +12,7 @@ Two images are input to the neural network i.e. a content image and a style imag
 ![image](https://user-images.githubusercontent.com/49324230/135998517-8f8bf8a5-30a8-4204-acc3-700efe110e9c.png)
 
 
-The loss function for the content image minimizes the difference of the features activated for the content image corresponding to the mixed image (which initially is just a noise image that gradually improves) at one or more layers. This preserves the contour of the content image to the resultant mixed image.
-Whereas the loss function for the style image minimizes the difference between so-called Gram-matrices between style image and the mixed image. This is done at one or more layers. The usage of the Gram matrix is it identifies which features are activated simultaneously at a given layer. Then we mimic the same behavior to apply it to the mixed image.
-Using TensorFlow, we update the gradient of these combined loss functions of content and style image to a satisfactory level. Certain calculations of Gram matrices, storing intermediate values for efficiency, loss function for denoising of images, normalizing combined loss function so both image scale relative to each other.
+The principle of neural style transfer is to define two distance functions, one that describes how different the content of two images are, Lcontent, and one that describes the difference between the two images in terms of their style, Lstyle. Then, given three images, a desired style image, a desired content image, and the input image (initialized with the content image), we try to transform the input image to minimize the content distance with the content image and its style distance with the style image.
 
 
 ![image](https://user-images.githubusercontent.com/49324230/135999667-e8ee3ccc-9517-4d8f-a6ae-ae17733f6c22.png)
