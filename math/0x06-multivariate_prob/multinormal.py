@@ -28,6 +28,8 @@ class MultiNormal:
         d = x.shape[0]
         xm = x - self.mean
         exponent = - 0.5 * np.matmul(xm.T, np.matmul(np.linalg.inv(self.cov), xm))
+        return np.exp(exponent[0, 0]) / np.sqrt(((2 * np.pi) ** d) * np.linalg.det(self.cov))
+
 
 if __name__ == '__main__':
     import numpy as np
