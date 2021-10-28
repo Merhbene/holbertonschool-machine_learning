@@ -36,7 +36,7 @@ def P_init(X, perplexity):
 
 
 if __name__ == "__main__":
-    pca = __import__('1-pca').pca
+    #pca = __import__('1-pca').pca
     X = np.loadtxt("mnist2500_X.txt")
     X = pca(X, 50)
     D, P, betas, H = P_init(X, 30.0)
