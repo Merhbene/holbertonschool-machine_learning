@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """ PCA"""
+
 import numpy as np
 
 
@@ -7,15 +8,15 @@ def pca(X, var=0.95):
     """perform PCA on a dataset"""
     # Singular Value Decomposition:
     _, s, vh = np.linalg.svd(X)
+    W = vh.T
     # Return the cumulative sum of the elements
     total_var = np.cumsum(s) / np.sum(s)
     nd = np.argmax(total_var >= var) + 1
     # var is the fraction of the variance that the PCA transformation should maintain
-    W = vh.T
     return W[:,:nd]
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     np.random.seed(0)
     a = np.random.normal(size=50)
     b = np.random.normal(size=50)
