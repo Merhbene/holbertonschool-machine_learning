@@ -49,8 +49,8 @@ def P_affinities(X, tol=1e-5, perplexity=30.0):
     P = (P + P.T)/(2*n)
     return P
 
-pca = __import__('1-pca').pca
-P_affinities = __import__('4-P_affinities').P_affinities
+#pca = __import__('1-pca').pca
+#P_affinities = __import__('4-P_affinities').P_affinities
 
 X = np.loadtxt("mnist2500_X.txt")
 X = pca(X, 50)
