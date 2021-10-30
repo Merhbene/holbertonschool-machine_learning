@@ -11,7 +11,7 @@ cost = __import__('7-cost').cost
 
 def tsne(X, ndims=2, idims=50, perplexity=30.0, iterations=1000, lr=500):
     """Calculates the t-SNE transformation"""
-    X = pca(X, idims)
+    X = pca(X, idims).real
     n = X.shape[0]
     momentum = 0.5
     final_momentum = 0.8
