@@ -1,5 +1,6 @@
-import numpy as np
+#!/usr/bin/env python3
 """Q affinities"""
+import numpy as np
 
 
 def Q_affinities(Y):
