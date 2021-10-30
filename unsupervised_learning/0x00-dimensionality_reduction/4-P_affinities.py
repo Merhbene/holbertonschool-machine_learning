@@ -28,13 +28,13 @@ def P_affinities(X, tol=1e-5, perplexity=30.0):
                 if high is None:
                     betas[i] = betas[i] * 2
                 else:
-                    betas[i] = (betas[i] + high) / 2
+                    betas[i] = (low + high) / 2
             else:
                 high = betas[i, 0]
                 if low is None:
                     betas[i] = betas[i] / 2
                 else:
-                    betas[i] = (betas[i] + low) / 2
+                    betas[i] = (low + high) / 2
 
             Hi, Pi = HP(Di, betas[i])
             Hdiff = Hi - H
