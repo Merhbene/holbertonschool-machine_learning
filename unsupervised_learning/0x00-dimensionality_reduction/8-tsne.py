@@ -16,7 +16,7 @@ def tsne(X, ndims=2, idims=50, perplexity=30.0, iterations=1000, lr=500):
     momentum = 0.5
     final_momentum = 0.8
     #Y = np.random.randn(n, ndims)
-    Y = np.random.normal(0, 0.01, size=(n, idims))
+    Y = np.random.normal(0, 0.01, size=(n, ndims))
     iY = np.zeros((n, ndims))
 
     P = P_affinities(X, 1e-5, perplexity)
