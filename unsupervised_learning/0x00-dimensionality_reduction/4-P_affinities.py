@@ -6,12 +6,12 @@ HP = __import__('3-entropy').HP
 
 
 def P_affinities(X, tol=1e-5, perplexity=30.0):
-
+    """Function that calculates the symmetric P affinities of a data set"""
     n = X.shape[0]
     D, P, betas, H = P_init(X, perplexity)
 
     for i in range(n): # per data point
-    
+        "a binary search on each point’s distribution to find the correct value of beta"
         low = None
         high = None
 
