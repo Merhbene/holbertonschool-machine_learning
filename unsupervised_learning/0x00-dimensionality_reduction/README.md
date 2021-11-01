@@ -12,8 +12,6 @@
 
 => t-SNE is capable of capturing much of the local structure of the high-dimensional data very well, while also revealing global structure such as the presence of clusters at several scales.[t-SNE](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf).
 
-[Visualizing Data using t-SNE ](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf)
-
 
 We are using MNIST dataset for knowing more about PCA and t-SNE.
 
