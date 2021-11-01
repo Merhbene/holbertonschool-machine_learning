@@ -1,5 +1,5 @@
 
-# dimensionality reduction
+# Dimensionality reduction
 
 
 **The main objective of dimensionality reduction is to find a low-dimensional representation of the data that retains as much information as possible.**
