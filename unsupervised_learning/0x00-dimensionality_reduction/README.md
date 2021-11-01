@@ -1,3 +1,7 @@
+
+# dimensionality reduction
+
+
 **The main objective of dimensionality reduction is to find a low-dimensional representation of the data that retains as much information as possible.**
 
 ![1_ik3r8uZgzGVGA-bgQVIyaw](https://user-images.githubusercontent.com/49324230/139245800-ba0d899a-c471-4469-8556-13764cdcbd62.gif)
@@ -6,7 +10,7 @@
 
 * t-SNE(T- distributed Stochastic Neighbor Embedding) is also a method to reduce the dimension. It takes a set of points in a high-dimensional space and find a faithful representation of those points in a lower-dimensional space.
 
-=> t-SNE is capable of capturing much of the local structure of the high-dimensional data very well, while also revealing global structure such as the presence of clusters at several scales.
+=> t-SNE is capable of capturing much of the local structure of the high-dimensional data very well, while also revealing global structure such as the presence of clusters at several scales.[t-SNE](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf).
 
 [Visualizing Data using t-SNE ](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf)
 
