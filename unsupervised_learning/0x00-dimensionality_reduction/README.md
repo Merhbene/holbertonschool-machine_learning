@@ -10,7 +10,7 @@
 
 * t-SNE(T- distributed Stochastic Neighbor Embedding) is also a method to reduce the dimension. It takes a set of points in a high-dimensional space and find a faithful representation of those points in a lower-dimensional space.
 
-=> t-SNE is capable of capturing much of the local structure of the high-dimensional data very well, while also revealing global structure such as the presence of clusters at several scales.[t-SNE](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf).
+=> [t-SNE](https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf) is capable of capturing much of the local structure of the high-dimensional data very well, while also revealing global structure such as the presence of clusters at several scales.
 
 
 We are using MNIST dataset for knowing more about PCA and t-SNE.
