@@ -10,3 +10,11 @@ The main objective of dimensionality reduction is to find a low-dimensional repr
 
 
 We are using MNIST dataset for knowing more about PCA and t-SNE.
+
+
+*** Dimensionality Reduction with t-SNE algorithm ***
+![image](https://user-images.githubusercontent.com/49324230/139650063-75fde03c-d6cb-41a7-8fc8-200cb854e22a.png)
+
+
+*** Dimensionality Reduction with PCA algorithm ***
+![image](https://user-images.githubusercontent.com/49324230/139650194-f8c124a2-7b11-4e57-bc8c-19475f66c277.png)
