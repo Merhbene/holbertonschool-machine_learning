@@ -17,7 +17,7 @@ def kmeans(X, k, iterations=1000):
     new_centroids = centroids.copy()
     for i in range(iterations):
         
-        dist = np.square(X[:, None, :] - centroids[None, :, :]).sum(axis=-1)
+        dist = np.square(X[:, None, :] - new_centroids[None, :, :]).sum(axis=-1)
         clss = np.argmin(dist, axis=1)
         
 
