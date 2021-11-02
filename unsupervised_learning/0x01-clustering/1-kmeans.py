@@ -29,7 +29,7 @@ def kmeans(X, k, iterations=1000):
             if len(X[indices]) > 0:
                 new_centroids[c] = np.mean(X[indices], axis=0)
             else:
-                new_centroids[c] = np.random.uniform(mins, maxs, size=d)
+                new_centroids[c] = np.random.uniform(mins, maxs)
             
 
         if np.array_equal(centroids, new_centroids):
