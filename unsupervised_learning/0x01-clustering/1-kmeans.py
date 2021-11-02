@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-
+""" K-means """
 import numpy as np
 
 def classes(X, C):
+    """assigne each point to a cluster """
     Xe = np.expand_dims(X, axis=1)
     Ce = np.expand_dims(C, axis=0)
     D = np.sum(np.square(Xe - Ce), axis=2)
