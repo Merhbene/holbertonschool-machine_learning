@@ -1,49 +1,38 @@
 #!/usr/bin/env python3
-"""K-means"""
+
 import numpy as np
 
+def classes(X, C):
+    Xe = np.expand_dims(X, axis=1)
+    Ce = np.expand_dims(C, axis=0)
+    D = np.sum(np.square(Xe - Ce), axis=2)
+    clss = np.argmin(D, axis=1)
+    return clss
 
 def kmeans(X, k, iterations=1000):
-    "performs K-means on a dataset"
+    """performs kmeans on a dataset"""
     if type(X) is not np.ndarray or X.ndim != 2:
         return None, None
-    if type(k) is not int  or k < 1:
+    if type(k) is not int or int(k) != k or k < 1:
         return None, None
-    if type(iterations) is not int or iterations < 1:
+    if type(iterations) is not int or int(iterations) != iterations or iterations < 1:
         return None, None
     _, d = X.shape
+    mins = np.min(X, axis=0)
+    maxs = np.max(X, axis=0)
 
-    centroids = initialize(X, k)
-    new_centroids = centroids.copy()
-    for i in range(iterations):
-        
-        dist = np.square(X[:, None, :] - new_centroids[None, :, :]).sum(axis=-1)
-        clss = np.argmin(dist, axis=1)
-        
-
-        for c in range(k):
-            indices = np.argwhere(clss == c).reshape(-1)
-            #centroids[indices] = np.mean(x[indices], axis=0)
-            if len(X[indices]) > 0:
-                new_centroids[c] = np.mean(X[indices], axis=0)
+    C = np.random.uniform(mins, maxs, size=(k, d))
+    nC = C.copy()
+    for _ in range(iterations):
+        clss = classes(X, C)
+        for i in range(k):
+            indices = np.argwhere(clss == i).reshape(-1)
+            if X[indices].shape[0] > 0:
+                nC[i] = np.mean(X[indices], axis=0)
             else:
-                new_centroids[c] = initialize(X, 1)
-            
-
-        if np.allclose(centroids, new_centroids):
+                nC[i] = np.random.uniform(mins, maxs)
+        if np.array_equal(nC, C):
             break
-        centroids = new_centroids.copy()
-    return centroids, clss
-
-
-def initialize(X, k):
-    """ initializes cluster centroids for K-means"""
-    if type(X) is not np.ndarray or X.ndim != 2:
-        return None
-    if type(k) is not int or k < 1:
-        return None
-    _, d = X.shape
-    low = np.amin(X, 0)
-    high = np.amax(X, 0)
-    cluster_centroids = np.random.uniform(low, high, size=(k, d))
-    return cluster_centroids
+        C = nC.copy()
+    clss = classes(X, C)
+    return C, clss
