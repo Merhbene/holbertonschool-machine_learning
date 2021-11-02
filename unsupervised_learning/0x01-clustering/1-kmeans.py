@@ -12,10 +12,8 @@ def kmeans(X, k, iterations=1000):
     if type(iterations) is not int or iterations < 1:
         return None, None
     _, d = X.shape
-    mins = np.min(X, axis=0)
-    maxs = np.max(X, axis=0)
-    
-    centroids = np.random.uniform(mins, maxs, size=(k, d))
+
+    centroids = initialize(X, k)
     new_centroids = centroids.copy()
     for i in range(iterations):
         
@@ -29,11 +27,23 @@ def kmeans(X, k, iterations=1000):
             if len(X[indices]) > 0:
                 new_centroids[c] = np.mean(X[indices], axis=0)
             else:
-                new_centroids[c] = np.random.uniform(mins, maxs)
+                new_centroids[c] = initialize(X, 1)
             
 
-        if np.array_equal(centroids, new_centroids):
+        if np.allclose(centroids, new_centroids):
             break
         centroids = new_centroids.copy()
     return centroids, clss
 
+
+def initialize(X, k):
+    """ initializes cluster centroids for K-means"""
+    if type(X) is not np.ndarray or X.ndim != 2:
+        return None
+    if type(k) is not int or k < 1:
+        return None
+    _, d = X.shape
+    low = np.amin(X, 0)
+    high = np.amax(X, 0)
+    cluster_centroids = np.random.uniform(low, high, size=(k, d))
+    return cluster_centroids
