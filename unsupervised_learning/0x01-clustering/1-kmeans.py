@@ -2,6 +2,7 @@
 """ K-means """
 import numpy as np
 
+
 def classes(X, C):
     """assigne each point to a cluster """
     Xe = np.expand_dims(X, axis=1)
@@ -9,6 +10,7 @@ def classes(X, C):
     D = np.sum(np.square(Xe - Ce), axis=2)
     clss = np.argmin(D, axis=1)
     return clss
+
 
 def kmeans(X, k, iterations=1000):
     """performs kmeans on a dataset"""
