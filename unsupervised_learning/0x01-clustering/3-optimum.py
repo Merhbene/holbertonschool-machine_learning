@@ -19,6 +19,7 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         return None, None
     if type(iterations) is not int or iterations < 1:
         return None, None
+
     results = []
     var = []
     for k in range(kmin, kmax + 1):
@@ -26,8 +27,5 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         results.append((C, clss))
         var.append(variance(X, C))
     d0 = var[0]
-    d_vars = []
-    #d_vars = [d0 - v for v in var]
-    for v in var:
-        d_vars.append(d0 - v)
+    d_vars = [d0 - v for v in var]
     return results, d_vars
