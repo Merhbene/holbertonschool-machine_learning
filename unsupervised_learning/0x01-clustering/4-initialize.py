@@ -5,7 +5,7 @@ kmeans = __import__('1-kmeans').kmeans
 
 
 def initialize(X, k):
-    """initializes variables: a Gaussian Mixture Model"""
+    """initializes variables for a Gaussian Mixture Model"""
     _,  d = X.shape
     if type(X) is not np.ndarray or X.ndim != 2:
         return None, None, None
@@ -13,6 +13,7 @@ def initialize(X, k):
         return None, None, None
     pi = np.full(k, 1/k) # a new array of shape k filled with 1/k
     m, _ = kmeans(X, k)
-    # S = np.array([np.eye(d) for i in range(k)])
+    # S = np.array([np.eye(d) for i in range(k)])   
     S = np.tile(np.eye(d), (k, 1, 1))
     return pi, m, S
+
