@@ -5,7 +5,7 @@ kmeans = __import__('1-kmeans').kmeans
 
 
 def initialize(X, k):
-    """initializes variables for a Gaussian Mixture Model"""
+    """initializes variables: a Gaussian Mixture Model"""
     _,  d = X.shape
     if type(X) is not np.ndarray or X.ndim != 2:
         return None, None, None
