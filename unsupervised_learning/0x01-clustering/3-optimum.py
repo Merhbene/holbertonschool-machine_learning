@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-
+"""optimum"""
 import numpy as np
 kmeans = __import__('1-kmeans').kmeans
 variance = __import__('2-variance').variance
 
 
 def optimum_k(X, kmin=1, kmax=None, iterations=1000):
+    "tests for the optimum nb of clusters by variance"
     if type(X) is not np.ndarray or X.ndim != 2:
         return None, None
     if type(kmin) is not int or kmin < 1:
