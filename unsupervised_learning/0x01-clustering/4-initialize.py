@@ -13,6 +13,6 @@ def initialize(X, k):
         return None, None, None
     pi = np.full(k, 1/k) # a new array of shape k filled with 1/k
     m, _ = kmeans(X, k)
-    S = np.array([np.eye(d) for i in range(k)])
-    # S = np.tile(np.eye(d), (k, 1, 1))
+    # S = np.array([np.eye(d) for i in range(k)])
+    S = np.tile(np.eye(d), (k, 1, 1))
     return pi, m, S
