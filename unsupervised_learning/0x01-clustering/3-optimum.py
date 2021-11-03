@@ -12,7 +12,7 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
     if type(kmin) is not int or kmin < 1:
         return None, None
     if kmax is None:
-        kmax = X.shape[0] 
+        kmax = X.shape[0]
     if type(kmax) is not int or kmax < 1:
         return None, None
     if kmax <= kmin:
@@ -26,7 +26,5 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         results.append((C, clss))
         var.append(variance(X, C))
     d0 = var[0]
-    d_vars = []
-    for v in var:
-        d_vars.append(d0 - v)
+    d_vars = [d0 - v for v in var]
     return results, d_vars
