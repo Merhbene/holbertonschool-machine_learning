@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""pdf"""
+""" the probability density function """
 import numpy as np
 
 
@@ -22,7 +22,7 @@ def pdf(X, m, S):
 
 
 if __name__ == '__main__':
- 
+
     np.random.seed(0)
     m = np.array([12, 30, 10])
     S = np.array([[36, -30, 15], [-30, 100, -20], [15, -20, 25]])
