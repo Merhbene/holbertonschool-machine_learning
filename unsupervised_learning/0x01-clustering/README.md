@@ -19,11 +19,13 @@ The most important thing to know about GMs is that the convergence of this model
 * Evaluate the responsibility function using current parameters
 * Obtain new μ, ∑, and π using newly obtained responsibilities
 * Compute the log likelihood L again. Repeat steps 2–3 until the convergence.
+
+
 The Gaussian Mixtures will also converge to a local minimum.
 
 ![Convergence of Gaussian Mixtures.](https://miro.medium.com/max/623/1*kJYirC6ewCqX1M6UiXmLHQ.gif)
 
-## K-Means vs GMM:
+## Gaussian Mixture Models vs K-Means:
 The first visible difference between K-Means and Gaussian Mixtures is the shape the decision boundaries. GMs are somewhat more flexible and with a covariance matrix ∑ we can make the boundaries elliptical, as opposed to circular boundaries with K-means.
 Another thing is that GMs is a probabilistic algorithm. By assigning the probabilities to datapoints, we can express how strong is our belief that a given datapoint belongs to a specific cluster.
 
