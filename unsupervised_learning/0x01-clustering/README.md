@@ -8,7 +8,7 @@ K-Means is a popular non-probabilistic clustering algorithm. The goal of the alg
 * 4-Recalculate central points μ_k for each cluster
 * 5-Repeat 3–4 until central points stop moving
 
-https://miro.medium.com/max/640/1*lPcP9mUtfq9sApyWtPIvQg.gif
+![1_ik3r8uZgzGVGA-bgQVIyaw](https://miro.medium.com/max/640/1*lPcP9mUtfq9sApyWtPIvQg.gif)
 
 
 
