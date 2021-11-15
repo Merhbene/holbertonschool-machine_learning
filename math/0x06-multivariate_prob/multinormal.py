@@ -24,11 +24,38 @@ class MultiNormal():
         """
         if type(data) is not np.ndarray or len(data.shape) != 2:
             raise TypeError("data must be a 2D numpy.ndarray")
-        #self.mean, self.cov = self.mean_cov(data.T)
+        self.mean, self.cov = self.mean_cov(data.T)
+        """""
         n = data.shape[1]
         self.mean = np.mean(data, axis=1, keepdims=True)
         self.cov = np.matmul((data - self.mean), (data - self.mean).T) / (n - 1)
+        """""
+    @staticmethod
+    def mean_cov(X):
+        """
+        Calculates the mean and covariance of
+            a dataset.
+        Args:
+            X: numpy.ndarray - shape (n, d) containing data set.
+                n: Number of data points.
+                d: Number of dimensions in each data point.
+        Returns: mean, cov:
+            mean: numpy.ndarray - shape (d, 1) containing the
+                mean of the data set.
+            cov: numpy.ndarray - shape (d, d) containing the
+                covariance matrix of the data set.
+        """
+        if type(X) is not np.ndarray or len(X.shape) != 2:
+            raise TypeError("data must be a 2D numpy.ndarray")
 
+        if X.shape[0] < 2:
+            raise ValueError("data must contain multiple data points")
+
+        n, d = X.shape
+        mean = X.sum(axis=0)/n
+        deviation = X - mean
+        covariant = np.matmul(deviation.T, deviation)
+        return mean.reshape((d, 1)), covariant/(n-1)
 
     def pdf(self, x):
         """
