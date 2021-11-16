@@ -1,3 +1,4 @@
+#!/usr/bin/env python3`
 """Hyperparameter tuning module"""
 import numpy as np
 GP = __import__('2-gp').GaussianProcess
