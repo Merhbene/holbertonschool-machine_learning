@@ -18,8 +18,7 @@ class BayesianOptimization:
         X_s = np.linspace(min, max, ac_samples)
         self.X_s = np.expand_dims(X_s, axis=1) # or X_s.reshape(-1, 1)
 
-GP = __import__('2-gp').GaussianProcess
-#BO = __import__('3-bayes_opt').BayesianOptimization
+# BO = __import__('3-bayes_opt').BayesianOptimization
 # import matplotlib.pyplot as plt
 
 
