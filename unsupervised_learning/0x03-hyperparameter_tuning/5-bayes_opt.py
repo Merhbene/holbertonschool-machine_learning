@@ -5,6 +5,7 @@ from scipy.stats import norm
 GP = __import__('2-gp').GaussianProcess
 
 
+
 class BayesianOptimization:
     """BayesianOptimization class
     """
@@ -61,4 +62,3 @@ class BayesianOptimization:
         Y_opt = self.gp.Y[i_opt]
 
         return X_opt, Y_opt
-
