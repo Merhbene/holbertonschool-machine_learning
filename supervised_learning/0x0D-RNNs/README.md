@@ -10,6 +10,10 @@ We need to remember the previous word in order to generate the next word in a se
 
 
 RNNs also have a hidden stage which used to capture information about a sentence.
+
+**There are 3 types of vanilla recurrent neural network: the simple (RNN), gated recurrent unit (GRU) and long short term memory unit (LSTM).**
+
+
 ## RNN Cell
 
 ![image](https://www.researchgate.net/publication/332663947/figure/fig1/AS:751783865511938@1556250649554/Simple-RNN-cell-structure-in-hidden-layer-b.png)
