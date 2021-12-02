@@ -20,20 +20,22 @@ RNNs also have a hidden stage which used to capture information about a sentence
 
 ![image](https://i.stack.imgur.com/R5nRD.jpg)
 
+During back propagation, recurrent neural networks suffer from the vanishing gradient problem. Gradients are values used to update a neural networks weights. The vanishing gradient problem is when the gradient shrinks as it back propagates through time. If a gradient value becomes extremely small, it doesn’t contribute too much learning.
+
+So in recurrent neural networks, layers that get a small gradient update stops learning. Those are usually the earlier layers. So because these layers don’t learn, RNN’s can forget what it seen in longer sequences, thus having a short-term memory. 
+
 ## LSTM vs GRU
 
-The LSTM does have the ability to remove or add information to the cell state, carefully regulated by structures called gates.
+LSTM ’s and GRU’s were created as the solution to short-term memory. They have internal mechanisms called gates that can regulate the flow of information.
+
+
+These gates can learn which data in a sequence is important to keep or throw away. By doing that, it can pass relevant information down the long chain of sequences to make predictions. Almost all state of the art results based on recurrent neural networks are achieved with these two networks. LSTM’s and GRU’s can be found in speech recognition, speech synthesis, and text generation. You can even use them to generate captions for videos.
 
 
 Gates are a way to optionally let information through. They are composed out of a sigmoid neural net layer and a pointwise multiplication operation.
 
 ![image](https://camo.githubusercontent.com/c609301c17c4e304216f45e99ada47efe1fa41f2e4014b6c39076f9afdec5d5b/68747470733a2f2f696d6167652e736c696465736861726563646e2e636f6d2f6e6c70646c3036666f72736c6964657368617265656e6768656c7665746963612d3136303730363032323732332f39352f726563656e742d70726f67726573732d696e2d726e6e2d616e642d6e6c702d352d3633382e6a70673f63623d31343637383433363034)
 
-
-- A GRU has two gates, an LSTM has three gates.
-- GRUs don’t possess and internal memory (c_t) that is different from the exposed hidden state. They don’t have the output gate that is present in LSTMs.
-- The input and forget gates are coupled by an update gate z and the reset gate r is applied directly to the previous hidden state. Thus, the responsibility of the reset gate in a LSTM is really split up into both r and z.
-- We don’t apply a second nonlinearity when computing the output.
 
 
 In many tasks both architectures yield comparable performance and tuning hyperparameters like layer size is probably more important than picking the ideal architecture. GRUs have fewer parameters (U and W are smaller) and thus may train a bit faster or need less data to generalize. On the other hand, if you have enough data, the greater expressive power of LSTMs may lead to better results.
