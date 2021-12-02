@@ -58,3 +58,7 @@ The idea behind Bidirectional Recurrent Neural Networks (RNNs) is very straightf
 
 ![image](https://d1zx6djv3kb1v7.cloudfront.net/wp-content/media/2019/05/Deep-Dive-into-Bidirectional-LSTM-i2tutorials.jpg)
 
+
+**Interesting resources:**
+- [Illustrated Guide to RNN](https://towardsdatascience.com/illustrated-guide-to-recurrent-neural-networks-79e5eb8049c9).
+- [Illustrated Guide to LSTM & GRU](https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21).
