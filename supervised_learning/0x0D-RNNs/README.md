@@ -40,6 +40,6 @@ In deep RNNs, the hidden state information is passed to the next time step of th
 A Bidirectional Recurrent Neural Network (BiRNN) is an recurrent neural network with forward and backward states.
 
 
-![image](https://d3i71xaburhd42.cloudfront.net/f7bdb849dafe17c952bfd88b879e01f74cf59d78/4-Figure3-1.png)
+![image](http://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/f7bdb849dafe17c952bfd88b879e01f74cf59d78/4-Figure3-1.png)
 
 
