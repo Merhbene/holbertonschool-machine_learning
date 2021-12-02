@@ -23,6 +23,10 @@ So in recurrent neural networks, layers that get a small gradient update stops l
 
 ## LSTM vs GRU
 
+
+![image](https://miro.medium.com/max/1400/1*n-IgHZM5baBUjq0T7RYDBw.gif)
+
+
 LSTM ’s and GRU’s were created as the solution to short-term memory. They have internal mechanisms called gates that can regulate the flow of information.
 
 
