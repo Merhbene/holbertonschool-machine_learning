@@ -1,13 +1,10 @@
 # Recurrent Neural Networks (RNNs)
+![image](https://miro.medium.com/max/600/1*TqcA9EIUF-DGGTBhIx_qbQ.gif)
 
 Recurrent neural network is a type of neural network in which the output form the previous step is fed as input to the current step.
-
-
 In traditional neural networks, all the inputs and outputs are independent of each other, but this is not a good idea if we want to predict the next word in a sentence.
 
-
 We need to remember the previous word in order to generate the next word in a sentence, hence traditional neural networks are not efficient for NLP applications.
-
 
 RNNs also have a hidden stage which used to capture information about a sentence.
 
