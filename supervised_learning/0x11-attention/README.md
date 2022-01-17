@@ -1,4 +1,4 @@
-# Attention 
+## Attention 
 
 Attention is a mechanism combined in the RNN allowing it to focus on certain parts of the input sequence when predicting a certain part of the output sequence, enabling easier learning and of higher quality.
 
@@ -15,4 +15,12 @@ The context vectors enable the decoder to focus on certain parts of the input wh
 The attention weights are learned using the attention fully-connected network and a softmax function:
 
 ![image](https://miro.medium.com/max/1400/1*wxv56cPyJdrEFSkknrlP-A.jpeg)
-    
+
+## Transformers
+
+
+It's the combination of all the surrounding concepts that may be confusing, including attention.
+
+With Recurrent Neural Networks (RNN’s) we used to treat sequences sequentially to keep the order of the sentence in place. To satisfy that design, each RNN component (layer) needs the previous (hidden) output. As such, stacked LSTM computations were performed sequentially.
+
+Until transformers came out! The fundamental building block of a transformer is self-attention. 
