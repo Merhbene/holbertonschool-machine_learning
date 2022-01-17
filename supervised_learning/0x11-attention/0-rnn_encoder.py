@@ -14,7 +14,7 @@ class RNNEncoder(tf.keras.layers.Layer):
         initializer = tf.keras.initializers.Zeros()
         return initializer(shape=(self.batch, self.units))
 
-    def call(self, x, initial):
+    def __call__(self, x, initial):
         embeds = self.embedding(x)
         outputs, hidden = self.gru(inputs=embeds, initial_state=initial)   
         return outputs, hidden
