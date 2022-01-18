@@ -108,6 +108,9 @@ This is actually where the decoder processes the encoded representation. The att
 The intuition behind the encoder-decoder attention layer is to combine the input and output sentence. The encoder’s output encapsulates the final embedding of the input sentence. It is like our database. So we will use the encoder output to produce the Key and Value matrices. On the other hand, the output of the Masked Multi-head attention block contains the so far generated new sentence and is represented as the Query matrix in the attention layer. Again, it is the “search” in the database.
 
 
+![image](https://user-images.githubusercontent.com/9198933/76093965-d5ca7a00-5f8f-11ea-9e7f-006571820d44.png)
+
+
 # Resources
 * [Attention in RNN](https://medium.datadriveninvestor.com/attention-in-rnns-321fbcd64f05).
 * [Transformers](https://theaisummer.com/transformer/).
