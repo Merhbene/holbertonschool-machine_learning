@@ -15,4 +15,3 @@ def positional_encoding(max_seq_len, dm):
     PE[:, 1::2] = np.cos(pos[:, np.newaxis] / np.power(10000, even / dm))
 
     return PE
-
