@@ -26,32 +26,7 @@ With Recurrent Neural Networks (RNN’s) we used to treat sequences sequentially
 Until transformers came out! The fundamental building block of a transformer is self-attention. 
 
 
- the Transformer uses 3 different representations: the Queries, Keys and Values of the embedding matrix. This can easily be done by multiplying our input \textbf{X} \in R^{N \times d_{k} }X∈R 
-N×d 
-k
-​
- 
-  with 3 different weight matrices \textbf{W}_QW 
-Q
-​
- , \textbf{W}_KW 
-K
-​
-  and \textbf{W}_V \in R^{ d_{k} \times d_{model}}W 
-V
-​
- ∈R 
-d 
-k
-​
- ×d 
-model
-​
- 
-  . In essence, it's just a matrix multiplication in the original word embeddings. The resulted dimension will be smaller: d_{k} > d_{model}d 
-k
-​
- >d 
-model
-​
+the Transformer uses 3 different representations: the Queries, Keys and Values of the embedding matrix.
+This can easily be done by multiplying our input X with 3 different weight matrices WQ, Wk and Wv. In essence, it's just a matrix multiplication in the original word embeddings.
 
+![image](https://theaisummer.com/static/56773616d30b9dcb31aa792f2d701276/3096d/key-query-value.png)
