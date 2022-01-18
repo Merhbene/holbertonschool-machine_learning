@@ -16,6 +16,3 @@ def positional_encoding(max_seq_len, dm):
 
     return PE
 
-PE = positional_encoding(30, 512)
-print(PE.shape)
-print(PE)
