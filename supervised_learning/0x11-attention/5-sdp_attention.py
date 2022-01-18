@@ -10,7 +10,7 @@ def sdp_attention(Q, K, V, mask=None):
     K is a tensor with its last two dimensions as (..., seq_len_v, dk) containing the key matrix
     V is a tensor with its last two dimensions as (..., seq_len_v, dv) containing the value matrix
     """
-    Q_k = tf.matmul(Q, k, transpose_b=True)
+    Q_k = tf.matmul(Q, K, transpose_b=True)
     dk = tf.cast(tf.shape(Q)[-1], dtype=tf.float32)
     Q_k_scaled = Q_k / tf.math.sqrt(dk)
 
