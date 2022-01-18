@@ -47,7 +47,7 @@ The intuition behind multi-head attention is that it allows us to attend to diff
 
 * Each head will capture different contextual information as well, by correlating words in a unique manner.
 
-![image] (https://production-media.paperswithcode.com/methods/multi-head-attention_l1A3G7a.png)
+![image](https://production-media.paperswithcode.com/methods/multi-head-attention_l1A3G7a.png)
 ## Sum up: the Transformer encoder
 To process a sentence we need these 3 steps:
 
