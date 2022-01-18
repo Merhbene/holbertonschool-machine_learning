@@ -30,3 +30,9 @@ the Transformer uses 3 different representations: the Queries, Keys and Values o
 This can easily be done by multiplying our input X with 3 different weight matrices WQ, Wk and Wv. In essence, it's just a matrix multiplication in the original word embeddings.
 
 ![image](https://theaisummer.com/static/56773616d30b9dcb31aa792f2d701276/3096d/key-query-value.png)
+
+After applying a normalization layer and forming a residual skip connection, the creators of the transformer add another linear layer on top and renormalize it along with another skip connection.
+
+This is the encoder part of the transformer with N such building blocks:
+
+![image](https://theaisummer.com/static/dc71435f329458ee5cc09cb2ea09ebf8/7bc0b/encoder-without-multi-head.png)
