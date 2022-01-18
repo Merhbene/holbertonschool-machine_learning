@@ -36,3 +36,29 @@ After applying a normalization layer and forming a residual skip connection, the
 This is the encoder part of the transformer with N such building blocks:
 
 ![image](https://theaisummer.com/static/dc71435f329458ee5cc09cb2ea09ebf8/7bc0b/encoder-without-multi-head.png)
+
+
+## Sum up: the Transformer encoder
+To process a sentence we need these 3 steps:
+
+
+1. Word embeddings of the input sentence are computed simultaneously.
+
+2. Positional encodings are then applied to each embedding resulting in word vectors that also include positional information.
+
+3. The word vectors are passed to the first encoder block.
+
+Each block consists of the following layers in the same order:
+
+
+1. A multi-head self-attention layer to find correlations between each word
+2. A normalization layer
+3. A residual connection around the previous two sublayers
+
+4. A linear layer
+
+5. A second normalization layer
+
+6. A second residual connection
+
+![image](https://theaisummer.com/static/18072c01858310b080b3b6d9b4950175/e45a9/encoder.png)
