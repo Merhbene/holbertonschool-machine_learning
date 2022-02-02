@@ -21,11 +21,11 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
         ph = padding[0]
         pw = padding[1]
 
-    output_height = int(((h + 2 * ph - kh) / sh)) + 1
-    output_width = int(((w + 2 * pw - kw) / sw)) + 1
+    oh = int(((h + 2 * ph - kh) / sh)) + 1
+    ow = int(((w + 2 * pw - kw) / sw)) + 1
 
     # convolution output
-    output = np.zeros((m, output_height, output_width))
+    output = np.zeros((m, oh, ow))
 
     # Add zero padding to the input image
     image_padded = np.pad(images,
@@ -33,8 +33,8 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
                           mode='constant', constant_values=0)
 
     # Loop over every pixel of the output
-    for i in range(output_height):
-        for j in range(output_width):
+    for i in range(oh):
+        for j in range(ow):
             x = i * sh
             y = j * sw
             # element-wise multiplication of the kernel and the image
