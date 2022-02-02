@@ -6,10 +6,10 @@ import numpy as np
 
 
 def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
-
     m, h, w = images.shape
     kh, kw = kernel.shape
-    sh, sw = stride
+
+    sh, sw = stride[0], stride[1]
 
     if padding == "valid":
         ph = 0
