@@ -35,9 +35,9 @@ def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
     # Loop over every pixel of the output
     for i in range(oh):
         for j in range(ow):
-            x = i * sh
-            y = j * sw
-            # element-wise multiplication of the kernel and the image
-            img_slice = image_padded[:, x:x+kh, y:y+kw]
-            output[:, i, j] = np.tensordot(img_slice, kernel)
+            x = (i * sh) + kh
+            y = (j * sw) + kw
+
+            M = image_padded[:, (i * sh):x, (j * sw):y]
+            output[:, i, j] = np.tensordot(M, kernel)
     return output
