@@ -6,21 +6,24 @@ import numpy as np
 
 
 def convolve_grayscale(images, kernel, padding='same', stride=(1, 1)):
+
     m, h, w = images.shape
     kh, kw = kernel.shape
     sh, sw = stride[0], stride[1]
 
     if padding == 'valid':
        ph = pw = 0
+
     elif padding == "same":
         ph = int(np.ceil((h - 1) * sh + kh - h) / 2)
         pw = int(np.ceil((w - 1) * sw + kw - w) / 2)
+
     else:
         ph = padding[0]
         pw = padding[1]
 
-    oh = int(((h + 2 * ph - kh) / sh)) + 1
-    ow = int(((w + 2 * pw - kw) / sw)) + 1
+    oh = int(((h + 2 * ph - kh) / sh) + 1)
+    ow = int(((w + 2 * pw - kw) / sw) + 1)
 
     # convolution output
     output = np.zeros((m, oh, ow))
