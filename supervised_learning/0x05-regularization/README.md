@@ -17,6 +17,7 @@ The difference is that: while shrinking the quota, L1 tends to cut off some fact
 Another difference between them is that L1 regularization helps in feature selection by eliminating the features that are not important. This is helpful when the number of feature points are large in number.
 
 
-**Interesting resource:**
+**Interesting resources:**
+- [Intuitions on L1 and L2 Regularisation] (https://towardsdatascience.com/intuitions-on-l1-and-l2-regularisation-235f2db4c261).
 - [3 The difference between L1 and L2 regularization](https://explained.ai/regularization/L1vsL2.html#:~:text=L1%20is%20therefore%20useful%20for,you%20have%20collinear%2Fcodependent%20features.).
 - [L1 vs L2 Regularization: The intuitive difference](https://medium.com/analytics-vidhya/l1-vs-l2-regularization-which-is-better-d01068e6658c).
