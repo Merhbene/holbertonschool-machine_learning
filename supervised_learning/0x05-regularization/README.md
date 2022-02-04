@@ -1,4 +1,4 @@
-Regularization
+## Regularization
 
 The L1 and L2 regularization are widely used methods to control the model complexity and restrict over-fitting. There are some interesting comparisons between the L1 and L2 regularization. 
 
