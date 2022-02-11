@@ -32,7 +32,7 @@ def densenet121(growth_rate=32, compression=1.0):
         padding='same'
     )(conv_0)
 
-    block_0, n_filters = dense_block(pool_0, pool_0.shape[-1], growth_rate, 6)
+    block_0, n_filters = dense_block(pool_0, pool_0.shape[-1].value, growth_rate, 6)
     transition_0, n_filters = transition_layer(block_0, n_filters, compression)
     block_1, n_filters = dense_block(transition_0, n_filters, growth_rate, 12)
     transition_1, n_filters = transition_layer(block_1, n_filters, compression)
