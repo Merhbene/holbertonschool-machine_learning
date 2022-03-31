@@ -21,10 +21,10 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
             cluster size for each cluster size.
     """
     if (
-            type(X) is not np.ndarray or X.ndim != 2 or type(kmin) is not int or kmin < 1 or
-            type(kmax) is not int or kmax < 1 or
-            kmax <= kmin or
-            type(iterations) is not int or iterations < 1 
+            (type(X) is not np.ndarray )or (X.ndim != 2) or (type(kmin) is not int) or (kmin < 1) or
+            (type(kmax) is not int) or (kmax < 1) or
+            (kmax <= kmin) or
+            (type(iterations) is not int) or (iterations < 1) 
             ):
         return (None, None)
 
