@@ -28,3 +28,7 @@ For comparison, here’s how PCA performs on the same dataset
 
 
 ![image](https://user-images.githubusercontent.com/49324230/139650194-f8c124a2-7b11-4e57-bc8c-19475f66c277.png)
+
+
+## Ressources:
+* [!Difference between PCA VS t-SNE](https://www.geeksforgeeks.org/difference-between-pca-vs-t-sne/?fbclid=IwAR09G-tkKy08TdidwOMPdN3X8Nl_Q1HctoSRjEPrGxdH7g3DafHbmf_vbjI)
