@@ -20,6 +20,8 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
         d_vars: A list containing the difference in variance from the smallest
             cluster size for each cluster size.
     """
+    if kmax is None:
+        kmax = X.shape[0]
     if (
             (type(X) is not np.ndarray )or (X.ndim != 2) or (type(kmin) is not int) or (kmin < 1) or
             (type(kmax) is not int) or (kmax < 1) or
@@ -31,8 +33,6 @@ def optimum_k(X, kmin=1, kmax=None, iterations=1000):
     results = []
     variance_difference = []
 
-    if kmax is None:
-        kmax = X.shape[0]
     for k in range(kmin, kmax + 1):
         centroids_labels = kmeans(X, k, iterations)
         results.append(centroids_labels)
