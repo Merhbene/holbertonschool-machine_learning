@@ -1,7 +1,5 @@
-
-
 #!/usr/bin/env python3
-""" Defines `BIC`. """
+""" BIC """
 import numpy as np
 expectation_maximization = __import__('8-EM').expectation_maximization
 
