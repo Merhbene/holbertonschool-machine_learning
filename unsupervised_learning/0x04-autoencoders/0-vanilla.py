@@ -1,29 +1,41 @@
 #!/usr/bin/env python3
-""" creates an autoencoder """
+""" Defines `autoencoder`. """
 import tensorflow.keras as keras
 
 
-def autoencoder(input_dims, hidden_layers, latent_dims):
-    "Encoder model"
-    Input = keras.layers.Input(shape=(input_dims,))
-    x = Input
-    for nodes in hidden_layers:
-        x = keras.layers.Dense(nodes, activation='relu')(x)
-    Output = keras.layers.Dense(latent_dims, activation='relu')(x)
+def autoencoder(input_dims, hidden_layer_sizes, latent_dims):
+    """
+    Creates an autoencoder:
+    input_dims: An integer containing the dimensions of the model input
+    hidden_layer_sizes: A list containing the number of nodes for each hidden
+        layer in the encoder, respectively.
+    latent_dims: An integer containing the dimensions of the latent space
+        representation
+    Returns: (encoder, decoder, auto)
+        encoder: The encoder model.
+        decoder: The decoder model.
+        auto: The full autoencoder model.
+    """
+    # encoder
+    input_layer = keras.Input(input_dims)
+    previous_layer = input_layer
+    for node_count in hidden_layer_sizes:
+        previous_layer = keras.layers.Dense(node_count, 'relu')(previous_layer)
 
-    encoder = keras.Model(inputs=Input, outputs=Output)
+    encoder_layers = keras.layers.Dense(latent_dims, 'relu')(previous_layer)
+    Encoder = keras.Model(input_layer, encoder_layers)
 
-    "Decoder model"
-    Input1 = keras.layers.Input(shape=(latent_dims,))
-    x = Input1
-    for nodes in reversed(hidden_layers):
-        x = keras.layers.Dense(nodes, activation='relu')(x)
-    Output1 = keras.layers.Dense(input_dims, activation='sigmoid')(x)
+    # decoder
+    latent_space = keras.Input(latent_dims)
+    previous_layer = latent_space
+    for node_count in reversed(hidden_layer_sizes):
+        previous_layer = keras.layers.Dense(node_count, 'relu')(previous_layer)
 
-    decoder = keras.Model(inputs=Input1, outputs=Output1)
+    decoder_layers = keras.layers.Dense(input_dims, 'sigmoid')(previous_layer)
+    Decoder = keras.Model(latent_space, decoder_layers)
 
-    " Autoencoder "
-    auto = keras.Model(inputs=Input, outputs=decoder(encoder(Input)))
-    auto.compile(optimizer='adam', loss='binary_crossentropy')
+    # complete autoencoder
+    Autoencoder = keras.Model(input_layer, Decoder(Encoder(input_layer)))
+    Autoencoder.compile(optimizer='adam', loss='binary_crossentropy')
 
-    return encoder, decoder, auto
+    return (Encoder, Decoder, Autoencoder)
