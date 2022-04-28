@@ -1,11 +1,7 @@
 #!/usr/bin/env python3
-"""
-Module is a script that fetches next launch
-data from the spacex api.
-"""
-
-
+"""API module"""
 import requests
+from datetime import datetime
 
 
 if __name__ == "__main__":
