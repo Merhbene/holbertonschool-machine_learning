@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 Module is a script that fetches next launch
 data from the spacex api.
