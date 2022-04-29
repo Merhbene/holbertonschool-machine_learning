@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
-"""
-Module is a script that fetches next launch
-data from the spacex api.
-"""
+"""This script displays upcoming launch information from the SpaceX API"""
+
 import requests
 
 
-if __name__ == "__main__":
-
+if __name__ == '__main__':
     base = "https://api.spacexdata.com/v4/"
 
     info = requests.get(base+"launches/next").json()
