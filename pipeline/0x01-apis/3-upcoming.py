@@ -17,5 +17,5 @@ if __name__ == '__main__':
     launchpad = launchpad_info["name"]
     pad_location = launchpad_info["locality"]
     args = (name, date, rocket, launchpad, pad_location)
-    result = "{} ({}) {} - {} ({})".format(*args)
+    result = "{} ({}) {} - {} ({})".format(args)
     print(result)
