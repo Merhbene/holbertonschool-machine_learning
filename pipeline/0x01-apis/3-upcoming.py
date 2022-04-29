@@ -1,31 +1,28 @@
 #!/usr/bin/env python3
-"""API module"""
+""" 
+By using the SpaceX API (https://github.com/r-spacex/SpaceX-API/blob/master/docs/v4/README.md), 
+display the upcomping launch:
+
+- name of the launch
+- the date (in local time)
+- the rocket name
+- the name (with locality) of the launchpad
+
+ """
 import requests
-from datetime import datetime
+import sys
+import time
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    r_launches = requests.get("https://api.spacexdata.com/v4/launches/upcoming").json()
+    first_launch = None
+    date_unix = None
+    for r_launch in r_launches:
+        if date_unix is None or date_unix > r_launch.get('date_unix', 0):
+            first_launch = r_launch
+            date_unix = r_launch.get('date_unix', 0)
 
-    base = "https://api.spacexdata.com/v4/"
-
-    info = requests.get(base+"launches/next").json()
-
-    date = info["date_local"]
-
-    name = info["name"]
-
-    launchpad_id = "launchpads/"+info["launchpad"]
-    rocket_id = "rockets/"+info["rocket"]
-
-    rocket_info = requests.get(base+rocket_id).json()
-
-    launchpad_info = requests.get(base+launchpad_id).json()
-
-    rocket = rocket_info["name"]
-    launchpad = launchpad_info["name"]
-    pad_location = launchpad_info["locality"]
-
-    args = (name, date, rocket, launchpad, pad_location)
-    result = "{} ({}) {} - {} ({})".format(*args)
-
-    print(result)
+    r_rocket = requests.get("https://api.spacexdata.com/v4/rockets/{}".format(first_launch.get('rocket'))).json()
+    r_launchpad = requests.get("https://api.spacexdata.com/v4/launchpads/{}".format(first_launch.get('launchpad'))).json()
+    print("{} ({}) {} - {} ({})".format(first_launch.get('name'), first_launch.get('date_local'), r_rocket.get('name'), r_launchpad.get('name'), r_launchpad.get('locality')))
