@@ -30,4 +30,8 @@ if __name__ == "__main__":
     args = (name, date, rocket, launchpad, pad_location)
     result = '{} ({}) {} - {} ({})'.format(*args)
 
-    print(result)
+    print("{} ({}) {} - {} ({})".format(name,
+                                        date,
+                                        rocket,
+                                        launchpad,
+                                        pad_location))
