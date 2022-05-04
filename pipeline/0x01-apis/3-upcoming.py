@@ -9,6 +9,7 @@ import requests
 import time
 
 if __name__ == "__main__":
+    """ prints location of user specified as cli arg """
     base = "https://api.spacexdata.com/v4/"
 
     info = requests.get(base+"launches/next").json()
