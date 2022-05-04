@@ -9,7 +9,7 @@ import time
 if __name__ == "__main__":
     base = 'https://api.spacexdata.com/v4/'
 
-    info = requests.get(base+'launches/next').json()
+    info = requests.get(base+'launches/upcoming').json()
 
     date = info['date_local']
 
