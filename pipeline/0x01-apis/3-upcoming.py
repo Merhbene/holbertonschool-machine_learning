@@ -1,27 +1,45 @@
 #!/usr/bin/env python3
-"""
-    Barely an API project.
-"""
+"""API module"""
 import requests
-import time
+from datetime import datetime
 
 
-if __name__ == "__main__":
-    """ prints location of user specified as cli arg """
-    url = 'https://api.spacexdata.com/v4/launches'
-    r = requests.get(url)
-    launches_list = r.json()
-    # print(len())
-    rocket_launches = {}
-    for launch in launches_list:
-        rocket_id = launch.get('rocket')
-        rocket_url = 'https://api.spacexdata.com/v4/rockets/' + rocket_id
-        r_rocket = requests.get(rocket_url)
-        j_rocket = r_rocket.json()
-        rocket_name = j_rocket.get('name')
-        if rocket_name not in rocket_launches:
-            rocket_launches.update({rocket_name: 1})
-        else:
-            rocket_launches[rocket_name] += 1
-    for k, v in reversed(sorted(rocket_launches.items(), key=lambda k: k[1])):
-        print("{}: {}".format(k, v))
+if __name__ == '__main__':
+    base_url = "https://api.spacexdata.com/v4"
+
+    response = requests.get(base_url + "/launches/upcoming")
+    content = response.json()
+    upcoming_launch = tuple()
+
+    for launch in content:
+        launch_name = launch['name']
+        launch_date = launch['date_unix']
+        rocket_id = launch['rocket']
+        lauchpad_id = launch['launchpad']
+        if len(upcoming_launch) == 0 or launch_date < upcoming_launch[0]:
+            upcoming_launch = (
+                launch_date,
+                launch_name,
+                rocket_id,
+                lauchpad_id,
+            )
+
+    launch_name = upcoming_launch[1]
+    launch_date = datetime.fromtimestamp(upcoming_launch[0]).isoformat()
+
+    response = requests.get(base_url + "/rockets/" + upcoming_launch[2])
+    rocket_name = response.json()['name']
+
+    response = requests.get(base_url + "/launchpads/" + upcoming_launch[3])
+    launchpad_name = response.json()['name']
+    launchpad_loc = response.json()['locality']
+
+    print(
+        "{} ({}) {} - {} ({})".format(
+            launch_name,
+            launch_date,
+            rocket_name,
+            launchpad_name,
+            launchpad_loc
+        )
+    )
