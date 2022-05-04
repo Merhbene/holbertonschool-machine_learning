@@ -6,12 +6,9 @@ data from the spacex api.
 
 
 import requests
-import sys
 import time
-import datetime
 
 if __name__ == "__main__":
-
     base = "https://api.spacexdata.com/v4/"
 
     info = requests.get(base+"launches/next").json()
