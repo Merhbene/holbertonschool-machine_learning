@@ -1,33 +1,27 @@
 #!/usr/bin/env python3
-""" 
-By using the SpaceX API (https://github.com/r-spacex/SpaceX-API/blob/master/README.md), 
-display the upcomping launch:
-
-- name of the launch
-- the date (in local time)
-- the rocket name
-- the name (with locality) of the launchpad
-
- """
+"""
+    Barely an API project.
+"""
 import requests
-import sys
 import time
-import datetime
 
 
-if __name__ == '__main__':
-    r_launches = requests.get("https://api.spacexdata.com/v4/launches/upcoming").json()
-    first_launch = None
-    date_unix = None
-    now = datetime.datetime.utcnow()
-    t = time.mktime(now.timetuple())
-
-    for r_launch in r_launches:
-        if date_unix is None or (date_unix < t and date_unix < r_launch.get('date_unix', 0)):
-            first_launch = r_launch
-            date_unix = r_launch.get('date_unix', 0)
-
-
-    r_rocket = requests.get("https://api.spacexdata.com/v4/rockets/{}".format(first_launch.get('rocket'))).json()
-    r_launchpad = requests.get("https://api.spacexdata.com/v4/launchpads/{}".format(first_launch.get('launchpad'))).json()
-    print("{} ({}) {} - {} ({})".format(first_launch.get('name'), first_launch.get('date_local'), r_rocket.get('name'), r_launchpad.get('name'), r_launchpad.get('locality')))
+if __name__ == "__main__":
+    """ prints location of user specified as cli arg """
+    url = 'https://api.spacexdata.com/v4/launches'
+    r = requests.get(url)
+    launches_list = r.json()
+    # print(len())
+    rocket_launches = {}
+    for launch in launches_list:
+        rocket_id = launch.get('rocket')
+        rocket_url = 'https://api.spacexdata.com/v4/rockets/' + rocket_id
+        r_rocket = requests.get(rocket_url)
+        j_rocket = r_rocket.json()
+        rocket_name = j_rocket.get('name')
+        if rocket_name not in rocket_launches:
+            rocket_launches.update({rocket_name: 1})
+        else:
+            rocket_launches[rocket_name] += 1
+    for k, v in reversed(sorted(rocket_launches.items(), key=lambda k: k[1])):
+        print("{}: {}".format(k, v))
