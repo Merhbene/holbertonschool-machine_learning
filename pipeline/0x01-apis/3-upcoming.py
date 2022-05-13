@@ -30,10 +30,3 @@ def get_launches():
 
 if __name__ == '__main__':
     get_launches()
-
-op_and(op_and(copy_files(["2006/18119/main_0.py"]), is_equal("", exec_bash("chmod +x 4-rocket_frequency.py"))), is_equal(dry_exec_bash("timeout 180s ./main_0.py"), dry_exec_bash("timeout 180s ./4-rocket_frequency.py")))
-
-op_and(copy_files(["2006/18119/main_0.py"]), is_equal(exec_bash("timeout 180s ./main_0.py"), exec_bash("timeout 180s ./4-rocket_frequency.py")))
-
-op_and(op_and(copy_files(["2006/18119/main_0.py"]), is_equal("", exec_bash("chmod +x 4-rocket_frequency.py"))), is_equal(exec_bash("timeout 180s ./main_0.py"), exec_bash("timeout 180s ./4-rocket_frequency.py")))
-
