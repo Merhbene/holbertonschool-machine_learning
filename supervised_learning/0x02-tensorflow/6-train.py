@@ -81,16 +81,15 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
             accuracyValid = session.run(accuracy,
                                         feed_dict={x: X_valid, y: Y_valid})
             if i % 100 == 0 or i == iterations:
-                print('After {} iterations:'.format(i))
-                train_cost, train_accuracy = session.run(
-                    (loss, accuracy), feed_dict={x: X_train, y: Y_train})
-                print('\tTraining Cost: {}'.format(train_cost))
-                print('\tTraining Accuracy: {}'.format(train_accuracy))
-                valid_cost, valid_accuracy = session.run(
-                    (loss, accuracy), feed_dict={x: X_valid, y: Y_valid})
-                print('\tValidation Cost: {}'.format(valid_cost))
-                print('\tValidation Accuracy: {}'.format(valid_accuracy))
-            session.run(train_op, feed_dict={x: X_train, y: Y_train})
+                print("After {} iterations:".format(i))
+                print("\tTraining Cost: {}".format(lossTrain))
+                print("\tTraining Accuracy: {}".format(accuracyTrain))
+                print("\tValidation Cost: {}".format(lossValid))
+                print("\tValidation Accuracy: {}".format(accuracyValid))
+             if iteration < iterations:
+                #session.run(train_op, feed_dict={x: X_train, y: Y_train})
+                session.run(train_op,
+                            feed_dict={x: X_train, y: Y_train})
 
         # This method runs the ops added by the constructor
         # for saving variables.
