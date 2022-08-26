@@ -65,30 +65,33 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes,
     # in which Operation objects are executed
 
     # and Tensor objects are evaluated
-    with tf.Session() as sess:
-        sess.run(init)
-        for i in range(iterations):
-            if not i % 100:
-                print('After {} iterations:'.format(i))
-                train_cost, train_accuracy = sess.run(
-                    (loss, accuracy), feed_dict={x: X_train, y: Y_train})
-                print('\tTraining Cost: {}'.format(train_cost))
-                print('\tTraining Accuracy: {}'.format(train_accuracy))
-                valid_cost, valid_accuracy = sess.run(
-                    (loss, accuracy), feed_dict={x: X_valid, y: Y_valid})
-                print('\tValidation Cost: {}'.format(valid_cost))
-                print('\tValidation Accuracy: {}'.format(valid_accuracy))
-            sess.run(train_op, feed_dict={x: X_train, y: Y_train})
+    with tf.Session() as session:
+        session.run(init)
 
-        print('After {} iterations:'.format(iterations))
-        train_cost, train_accuracy = sess.run(
-            (loss, accuracy), feed_dict={x: X_train, y: Y_train})
-        print('\tTraining Cost: {}'.format(train_cost))
-        print('\tTraining Accuracy: {}'.format(train_accuracy))
-        valid_cost, valid_accuracy = sess.run(
-            (loss, accuracy), feed_dict={x: X_valid, y: Y_valid})
-        print('\tValidation Cost: {}'.format(valid_cost))
-        print('\tValidation Accuracy: {}'.format(valid_accuracy))
+        for i in range(iterations + 1):
+            if i % 100 == 0 or i == iterations:
+                print("After {} iterations:".format(i))
+                print("\tTraining Cost: {}".format(lossTrain))
+                print("\tTraining Accuracy: {}".format(accuracyTrain))
+                print("\tValidation Cost: {}".format(lossValid))
+                print("\tValidation Accuracy: {}".format(accuracyValid))
+                session.run(train_op,
+                            feed_dict={x: X_train, y: Y_train})
+            # foward propagation
+            lossTrain = session.run(loss,
+                                    feed_dict={x: X_train, y: Y_train})
+            lossValid = session.run(loss,
+                                    feed_dict={x: X_valid, y: Y_valid})
 
-        saver = tf.train.Saver()
-        return saver.save(sess, save_path)
+            # back propagation
+            accuracyTrain = session.run(accuracy,
+                                        feed_dict={x: X_train, y: Y_train})
+            accuracyValid = session.run(accuracy,
+                                        feed_dict={x: X_valid, y: Y_valid})
+
+
+        # This method runs the ops added by the constructor
+        # for saving variables.
+        # It requires a session in which the graph was launched.
+        # The variables to save must also have been initialized.
+        return saver.save(session, save_path)
