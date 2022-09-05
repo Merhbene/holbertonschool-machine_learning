@@ -12,8 +12,9 @@ def evaluate(X, Y, save_path):
         save_path: The location to load the model from.
     Returns: the network's prediction, accuracy, and loss, respectively
     """
+    saver = tf.train.import_meta_graph(save_path + ".meta")
     with tf.Session() as session:
-        saver = tf.train.import_meta_graph(save_path + ".meta")
+        #saver = tf.train.import_meta_graph(save_path + ".meta")
         saver.restore(session, save_path)
 
         x = tf.get_collection("x")[0]
